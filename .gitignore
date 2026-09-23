@@ -56,3 +56,12 @@ dkms.conf
 
 #Datasheet Folder
 Datasheets/
+
+# Python and PlatformIO work files
+.venv/
+__pycache__/
+*.pyc
+.pio/
+BluetoothControlApp/build/
+BluetoothControlApp/dist/
+BluetoothControlApp/*.spec

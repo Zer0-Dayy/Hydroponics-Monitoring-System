@@ -1,4 +1,4 @@
-"""Local controller simulator for UI review before ESP32-S3 BLE firmware exists."""
+"""Local controller simulator for UI review without ESP32-S3 hardware."""
 
 import asyncio
 import random
@@ -21,6 +21,7 @@ class DemoService:
         self.on_telemetry = on_telemetry
         self.on_disconnect = on_disconnect
         self.connected = False
+        self.telemetry_enabled = False
         self.low_power = False
         self.devices = [
             {"id": "demo-level", "type": "level", "label": "Reservoir level", "online": True},
@@ -39,8 +40,12 @@ class DemoService:
         self._state()
         self.task = asyncio.create_task(self._loop())
 
+    async def set_telemetry_enabled(self, enabled: bool):
+        self.telemetry_enabled = enabled
+
     async def disconnect(self):
         self.connected = False
+        self.telemetry_enabled = False
         if self.task:
             self.task.cancel()
             try:
@@ -62,6 +67,9 @@ class DemoService:
     async def _loop(self):
         while self.connected:
             self._state()
+            if not self.telemetry_enabled:
+                await asyncio.sleep(3)
+                continue
             for device in self.devices:
                 kind = BY_KEY[device["type"]]
                 if kind.kind != "sensor" or (self.low_power and not kind.essential):

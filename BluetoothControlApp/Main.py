@@ -35,6 +35,7 @@ class ControlApp:
         self.state = {}
         self.last_state = 0.0
         self.busy = False
+        self.subscription_lock = asyncio.Lock()
         self.ssid = ft.TextField(label="WiFi network name (SSID)", width=420)
         self.password = ft.TextField(label="WiFi password", password=True, can_reveal_password=True, width=420)
         if demo:
@@ -45,6 +46,7 @@ class ControlApp:
         self.page.title = "Hydroponics Control"
         self.page.bgcolor = BACKGROUND
         self.page.padding = 24
+        self.page.on_close = self._close
         self.render()
         self.page.run_task(self._watch_state)
 
@@ -73,6 +75,8 @@ class ControlApp:
             self.render()
 
     def _telemetry_received(self, message):
+        if self.section != "Dashboard":
+            return
         try:
             value = float(message["value"])
             if not math.isfinite(value):
@@ -92,6 +96,7 @@ class ControlApp:
         self.state = {}
         self.last_state = 0.0
         self.devices = []
+        self.readings.clear()
         self.render()
         self.notice(reason)
 
@@ -108,6 +113,22 @@ class ControlApp:
     def _navigate(self, section):
         self.section = section
         self.render()
+        if self.connected:
+            self.page.run_task(self._sync_section)
+
+    async def _sync_section(self):
+        try:
+            async with self.subscription_lock:
+                await self.service.set_telemetry_enabled(self.section == "Dashboard")
+                if self.section == "Sensors & devices":
+                    await self._load_devices()
+                    self.render()
+        except Exception as error:
+            self.notice(f"Could not update this page: {error}")
+
+    async def _close(self, _event):
+        await self.service.disconnect()
+        self.store.close()
 
     def _card(self, controls, disabled=False, width=None):
         return ft.Container(
@@ -169,10 +190,15 @@ class ControlApp:
             ])
         metrics = []
         for (device, metric), (value, unit, stamp) in sorted(self.readings.items()):
-            fresh = time.monotonic() - stamp < 15
+            kind = next((item for item in TYPES if item.label == metric), None)
+            paused = bool(kind and self._paused(kind))
+            fresh = time.monotonic() - stamp < 15 and not paused
+            value_text = "Paused in low-power mode" if paused else (
+                f"{value:g} {unit}" if fresh else "No recent reading"
+            )
             metrics.append(self._card([
                 ft.Text(metric, color=MUTED),
-                ft.Text(f"{value:g} {unit}" if fresh else "No recent reading", size=23,
+                ft.Text(value_text, size=23,
                         weight=ft.FontWeight.BOLD, color=INK if fresh else MUTED),
                 ft.Text(device, size=11, color=MUTED),
             ], disabled=not fresh, width=235))
@@ -206,7 +232,8 @@ class ControlApp:
             rows.append(ft.Row(controls=[
                 ft.Column(controls=[ft.Text(controller.label, weight=ft.FontWeight.BOLD),
                                     ft.Text(controller.address, size=12, color=MUTED)], expand=True),
-                ft.Button("Connect", on_click=lambda e, item=controller: self._connect(item), disabled=self.busy),
+                ft.Button("Connect", on_click=lambda e, item=controller: self.page.run_task(self._connect, item),
+                          disabled=self.busy),
             ]))
         if self.connected:
             rows.append(ft.Button("Disconnect", on_click=self._disconnect))
@@ -246,7 +273,7 @@ class ControlApp:
                                                 color=MUTED if paused else INK),
                                         ft.Text("Paused in low-power mode" if paused else kind.profile,
                                                 size=12, color=MUTED)], expand=True),
-                    ft.Button("Add", on_click=lambda e, item=kind: self._add_device(item),
+                    ft.Button("Add", on_click=lambda e, item=kind: self.page.run_task(self._add_device, item),
                               disabled=blocked or paused or kind.key in configured_types or self.busy),
                 ]), bgcolor=DISABLED if paused else BACKGROUND, padding=10, border_radius=10,
             ))
@@ -296,8 +323,10 @@ class ControlApp:
         try:
             await self.service.connect(controller)
             self.controller = controller
-            await self._load_devices()
+            self.devices = []
+            self.readings.clear()
             self.section = "Dashboard"
+            await self.service.set_telemetry_enabled(True)
             self.notice(f"Connected to {controller.label}.")
         except Exception as error:
             self.notice(f"Connection failed: {error}")
@@ -356,6 +385,10 @@ class ControlApp:
             self.page.pop_dialog()
             try:
                 await self.service.send("delete_device", {"id": device["id"]})
+                self.readings = {
+                    key: value for key, value in self.readings.items()
+                    if key[0] != device["id"]
+                }
                 await self._load_devices()
                 self.notice(f"{label} removed.")
                 self.render()

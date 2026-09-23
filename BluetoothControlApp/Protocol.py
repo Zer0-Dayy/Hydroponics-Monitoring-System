@@ -1,4 +1,4 @@
-"""Provisional BLE contract. Firmware must implement and version this contract."""
+"""Versioned BLE frame contract shared with the ESP32-S3 demo."""
 
 import json
 import struct
