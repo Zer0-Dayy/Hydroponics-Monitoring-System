@@ -233,7 +233,7 @@ class ControlApp:
                 ft.Text("Live monitoring · local data · secure setup", size=12, color=MUTED),
             ], expand=True, spacing=2),
             self._pill(label, color, "#E6F4EF" if color == GOOD else WARNING if color == LOW else DISABLED),
-        ], spacing=14, wrap=True)
+        ], spacing=14)
 
     def _navigation(self):
         tabs = (

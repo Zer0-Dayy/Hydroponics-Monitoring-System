@@ -34,11 +34,13 @@ Run on the Ubuntu laptop that will use the app:
 
 ~~~bash
 .venv/bin/pip install pyinstaller
-.venv/bin/flet pack Main.py --name HydroponicsControl --icon AppIcon.png
+.venv/bin/flet pack Main.py --name HydroponicsControl --icon AppIcon.png --bundle-id com.appveyor.flet --product-name "Hydroponics Control"
 .venv/bin/python InstallDesktop.py --desktop
 ~~~
 
-The build produces `dist/HydroponicsControl` and a desktop entry; `InstallDesktop.py` copies the executable and icon into the current user's local application directory. `--desktop` also adds a shortcut when `~/Desktop` exists. Ubuntu may ask you to right-click the shortcut and choose **Allow Launching**. Re-run the installer after rebuilding to update the installed copy. The executable still needs Ubuntu's Bluetooth/BlueZ service and a display session.
+The build produces `dist/HydroponicsControl` and a desktop entry; `InstallDesktop.py` copies the executable and icon into the current user's local application directory. `--desktop` also adds a shortcut when `~/Desktop` exists. Ubuntu may ask you to right-click the shortcut and choose **Allow Launching**. Re-run the installer after rebuilding to update the installed copy, then close and reopen the app. If you pinned the previous launcher, unpin it and pin the newly installed Hydroponics Control entry. The executable still needs Ubuntu's Bluetooth/BlueZ service and a display session.
+
+Flet 1.0.1's shared Linux viewer currently advertises `com.appveyor.flet` as its window identity on this Ubuntu setup. The installer registers the icon and app name under that identity so GNOME can match the running window. Other applications using the same Flet viewer may share this dock identity; a future native `flet build linux` bundle would give this app its own ID, but it needs the Linux Flutter build toolchain.
 
 ## Architecture and limits
 
