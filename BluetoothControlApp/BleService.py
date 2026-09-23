@@ -6,6 +6,8 @@ from typing import Callable
 
 from bleak import BleakClient, BleakScanner
 
+from BluezPairing import pair_controller
+
 from Protocol import (
     AUTH_UUID, COMMAND_UUID, RESULT_UUID, SERVICE_UUID, STATE_UUID, TELEMETRY_UUID,
     Decoder, encode, request,
@@ -39,9 +41,10 @@ class BleService:
                 controllers.append(Controller(device.name or "Hydroponics controller", device.address, device))
         return sorted(controllers, key=lambda item: item.label.lower())
 
-    async def connect(self, controller: Controller) -> None:
+    async def connect(self, controller: Controller, passkey: str = "") -> None:
         await self.disconnect()
-        client = BleakClient(controller.device, pair=True, timeout=60, disconnected_callback=self._disconnected)
+        await pair_controller(controller.device, passkey)
+        client = BleakClient(controller.device, pair=False, timeout=60, disconnected_callback=self._disconnected)
         try:
             await client.connect()
             for decoder in self.decoders.values():
@@ -62,10 +65,15 @@ class BleService:
             self.connected = True
             for message in self.decoders[STATE_UUID].feed(await client.read_gatt_char(STATE_UUID)):
                 self.on_state(message)
-        except Exception:
+        except Exception as error:
             self.connected = False
             self.client = None
             await client.disconnect()
+            if "failed to discover services" in str(error).lower():
+                raise ConnectionError(
+                    "ESP disconnected during service discovery. Check its serial authentication log; "
+                    "if this laptop was previously paired, remove the stale Ubuntu bond and pair again."
+                ) from error
             raise
 
     async def set_telemetry_enabled(self, enabled: bool) -> None:

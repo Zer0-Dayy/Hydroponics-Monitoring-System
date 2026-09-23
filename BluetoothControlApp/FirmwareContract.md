@@ -13,7 +13,7 @@ The [ESP demo firmware](../ESP-Demo/BuildGuide.md) implements this contract for 
 | Result | 98a90f04-346e-4e65-9cbd-7687685bdc01 | Authenticated notify |
 | Auth gate | 98a90f05-346e-4e65-9cbd-7687685bdc01 | Authenticated read, value `HYDRO_SECURE_V1` |
 
-The firmware requests LE Secure Connections with bonding, MITM authentication, a boot-generated six-digit passkey displayed on local serial, authenticated attribute access, and a single bonded owner. The auth gate is an early protected read, not independent cryptographic proof. Ubuntu/BlueZ performs pairing through Bleak's `pair=True`. The first authenticated owner persists until flash is erased. This demo does not implement a time-limited commissioning window.
+The firmware requests LE Secure Connections with bonding, MITM authentication, a boot-generated six-digit passkey displayed on local serial, authenticated attribute access, and a single bonded owner. The auth gate is an early protected read, not independent cryptographic proof. The app supplies a temporary BlueZ `KeyboardOnly` agent for passkey entry, pairs on that agent's D-Bus connection, then lets Bleak discover GATT services. The first authenticated owner persists until flash is erased. This demo does not implement a time-limited commissioning window.
 
 ## Framing and traffic
 

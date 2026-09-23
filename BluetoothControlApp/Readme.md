@@ -4,7 +4,7 @@ An Ubuntu desktop prototype for the ESP32 hydroponics controller. The GUI uses F
 
 ## What it does
 
-- Scan for the project BLE service, pair through Ubuntu, and connect to a controller.
+- Scan for the project BLE service, enter the ESP serial passkey in the app for first pairing, and connect through BlueZ.
 - Receive controller mode and WiFi state on every page. Dashboard subscribes to sensor telemetry only while it is open.
 - Timestamp displayed BLE readings on the laptop and save them in local SQLite under `XDG_DATA_HOME/HydroponicsControlApp/Readings.sqlite3`, or `~/.local/share/HydroponicsControlApp/Readings.sqlite3`.
 - Send WiFi SSID and password from a form. The app does not save the password and clears the field after sending. The ESP demo stores it in NVS.
@@ -24,7 +24,7 @@ python3 -m venv .venv
 .venv/bin/python Main.py --demo
 ~~~
 
-Omit `--demo` to connect to the ESP32. For first pairing, connect a local serial monitor to the ESP, reset it, and enter the six-digit passkey printed there when Ubuntu asks. The first authenticated laptop becomes the demo controller's owner. See the firmware [BuildGuide](../ESP-Demo/BuildGuide.md) for flashing and reset details.
+Omit `--demo` to connect to the ESP32. For first pairing, connect a local serial monitor to the ESP, reset it, and enter the six-digit passkey printed there in the app's Connect page. The app provides a temporary BlueZ pairing agent, so a separate Ubuntu Settings prompt is unnecessary. The first authenticated laptop becomes the demo controller's owner. See the firmware [BuildGuide](../ESP-Demo/BuildGuide.md) for flashing and reset details.
 
 ## Build an Ubuntu executable
 

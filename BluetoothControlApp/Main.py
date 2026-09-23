@@ -36,6 +36,7 @@ class ControlApp:
         self.last_state = 0.0
         self.busy = False
         self.subscription_lock = asyncio.Lock()
+        self.passkey = ft.TextField(label="BLE passkey from ESP serial monitor", width=300, max_length=6)
         self.ssid = ft.TextField(label="WiFi network name (SSID)", width=420)
         self.password = ft.TextField(label="WiFi password", password=True, can_reveal_password=True, width=420)
         if demo:
@@ -225,7 +226,8 @@ class ControlApp:
     def _connect_page(self):
         rows = [
             ft.Text("Find a controller", size=21, weight=ft.FontWeight.BOLD, color=INK),
-            ft.Text("Select the controller you are physically commissioning. Pairing is handled by Ubuntu."),
+            ft.Text("Enter the six-digit code printed by the ESP serial monitor for first pairing. Leave it blank if this laptop is already paired."),
+            self.passkey,
             ft.Button("Scan nearby BLE controllers", on_click=self._scan, disabled=self.busy),
         ]
         for controller in self.candidates:
@@ -321,7 +323,8 @@ class ControlApp:
         self.busy = True
         self.render()
         try:
-            await self.service.connect(controller)
+            await self.service.connect(controller, (self.passkey.value or "").strip())
+            self.passkey.value = ""
             self.controller = controller
             self.devices = []
             self.readings.clear()

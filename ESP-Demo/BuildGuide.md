@@ -27,12 +27,12 @@ If the upload cannot open the port on Ubuntu, add your user to the dialout group
 ## Pair and try the app
 
 1. Open the serial monitor and reset the ESP. It prints a fresh six-digit BLE passkey. Keep the serial monitor local to the technician.
-2. Run the Python app on the Ubuntu laptop, open Connect, scan, and choose Hydroponics-ESP1. Ubuntu/BlueZ should ask for the displayed passkey on first pairing. Only the first authenticated, bonded laptop becomes the owner.
+2. Run the Python app on the Ubuntu laptop, open Connect, scan, enter the passkey in the app, and choose Hydroponics-ESP1. The app registers a temporary BlueZ keyboard agent for first pairing, so Ubuntu Settings does not need to display a prompt. On later connections from the same bonded laptop, the code can be left blank. Only the first authenticated, bonded laptop becomes the owner.
 3. Open Dashboard. Simulated readings appear for the configured sensors. Open Sensors & devices to add or remove supported types; return to Dashboard to see the new set. Sensor readings are generated only while Dashboard subscribes.
 4. Enter the WiFi SSID and WPA password on WiFi configuration. The ESP stores them in NVS, attempts a WiFi connection, and sends updated WiFi state over BLE. A configuration acknowledgement means saved, not yet connected.
 5. Press BOOT after the ESP has started. The ESP turns WiFi off and reports low_power. The dashboard and WiFi page update from the continuous state heartbeat. Only level, pH, and TDS keep producing demo data. Press BOOT again to restore normal mode and reconnect WiFi.
 
-The configured device list and WiFi credentials survive reboot. To reset the demo's first-owner bond and saved settings, erase flash deliberately with PlatformIO's erase target, then reflash. Erasing flash destroys the demo configuration and bonds.
+The configured device list and WiFi credentials survive reboot. If Ubuntu has a stale pairing after reflashing or erasing the ESP, remove the old device in Ubuntu Bluetooth Settings, then scan and pair again in the app. To reset the demo's first-owner bond and saved settings, erase flash deliberately with PlatformIO's erase target, then reflash. Erasing flash destroys the demo configuration and bonds. The serial monitor now prints authentication flags and disconnect reasons when a pairing attempt fails.
 
 ## Security boundary
 

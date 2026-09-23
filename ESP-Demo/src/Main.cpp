@@ -342,12 +342,14 @@ void publishTelemetry() {
 
 class ServerCallbacks final : public NimBLEServerCallbacks {
     void onConnect(NimBLEServer* connectedServer, NimBLEConnInfo& info) override {
+        Serial.println("BLE client connected; awaiting authenticated pairing");
         if (connectedServer->getConnectedCount() > 1) {
             connectedServer->disconnect(info.getConnHandle());
         }
     }
 
-    void onDisconnect(NimBLEServer*, NimBLEConnInfo&, int) override {
+    void onDisconnect(NimBLEServer*, NimBLEConnInfo&, int reason) override {
+        Serial.printf("BLE client disconnected (reason %d)\n", reason);
         authenticated.store(false);
         telemetrySubscribed.store(false);
         NimBLEDevice::startAdvertising();
@@ -362,7 +364,10 @@ class ServerCallbacks final : public NimBLEServerCallbacks {
         bool secure = info.isEncrypted() && info.isAuthenticated() &&
                       info.isBonded() && info.getSecKeySize() >= 16;
         const String identity = info.getIdAddress().toString().c_str();
+        Serial.printf("BLE authentication: encrypted=%d authenticated=%d bonded=%d key_bytes=%d\n",
+                      info.isEncrypted(), info.isAuthenticated(), info.isBonded(), info.getSecKeySize());
         if (secure && !ownerAddress.isEmpty() && identity != ownerAddress) {
+            Serial.println("BLE owner mismatch; rejecting new laptop");
             NimBLEDevice::deleteBond(info.getIdAddress());
             secure = false;
         }
@@ -371,6 +376,7 @@ class ServerCallbacks final : public NimBLEServerCallbacks {
             if (secure) ownerAddress = identity;
         }
         authenticated.store(secure);
+        Serial.printf("BLE owner authentication %s\n", secure ? "accepted" : "rejected");
         if (!secure) server->disconnect(info.getConnHandle());
     }
 };

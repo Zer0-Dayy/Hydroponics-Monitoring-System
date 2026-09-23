@@ -35,7 +35,7 @@ class DemoService:
         await asyncio.sleep(0.3)
         return [Controller("Demo ESP32", "DEMO-CONTROLLER")]
 
-    async def connect(self, _controller):
+    async def connect(self, _controller, _passkey=""):
         self.connected = True
         self._state()
         self.task = asyncio.create_task(self._loop())
