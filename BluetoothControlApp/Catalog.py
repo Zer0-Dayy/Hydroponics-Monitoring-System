@@ -14,7 +14,7 @@ class DeviceType:
     kind: str = "sensor"
 
 
-# GPIOs below describe the inherited ESP1 breadboard only. The new ESP32-S3
+# GPIOs below describe the inherited ESP1 breadboard only. The new ESP32
 # firmware owns its pin map; the app sends type identifiers, never GPIO numbers.
 TYPES = (
     DeviceType("level", "Reservoir level", "Ultra_Sonic_Sensor", (23, 22), "cm", True),

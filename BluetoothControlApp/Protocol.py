@@ -1,4 +1,4 @@
-"""Versioned BLE frame contract shared with the ESP32-S3 demo."""
+"""Versioned BLE frame contract shared with the ESP32 demo."""
 
 import json
 import struct

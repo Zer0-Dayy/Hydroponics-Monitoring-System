@@ -1,6 +1,6 @@
 # Hydroponics Control
 
-An Ubuntu desktop prototype for the ESP32-S3 hydroponics controller. The GUI uses Flet and Bleak/BlueZ. The matching demo firmware and terminal build instructions are in [ESP-Demo](../ESP-Demo/BuildGuide.md). Run with `--demo` to review the screens without hardware.
+An Ubuntu desktop prototype for the ESP32 hydroponics controller. The GUI uses Flet and Bleak/BlueZ. The matching demo firmware and terminal build instructions are in [ESP-Demo](../ESP-Demo/BuildGuide.md). Run with `--demo` to review the screens without hardware.
 
 ## What it does
 
@@ -24,7 +24,7 @@ python3 -m venv .venv
 .venv/bin/python Main.py --demo
 ~~~
 
-Omit `--demo` to connect to the ESP32-S3. For first pairing, connect a local serial monitor to the ESP, reset it, and enter the six-digit passkey printed there when Ubuntu asks. The first authenticated laptop becomes the demo controller's owner. See the firmware [BuildGuide](../ESP-Demo/BuildGuide.md) for flashing and reset details.
+Omit `--demo` to connect to the ESP32. For first pairing, connect a local serial monitor to the ESP, reset it, and enter the six-digit passkey printed there when Ubuntu asks. The first authenticated laptop becomes the demo controller's owner. See the firmware [BuildGuide](../ESP-Demo/BuildGuide.md) for flashing and reset details.
 
 ## Build an Ubuntu executable
 
@@ -41,4 +41,4 @@ Distribute the `dist/HydroponicsControl` executable produced on Ubuntu. The exec
 
 Flet suits a small Python commissioning app with async Bleak handlers. PySide6 is a reasonable alternative if a native desktop UI or richer charts become central. The protocol and GATT map are documented in [FirmwareContract.md](FirmwareContract.md). The old handover WiFi/MQTT source is reference material, not the BLE firmware used here.
 
-The demo firmware uses authenticated BLE pairing, bonding, an owner lock, and protected attributes. The application cannot independently prove the radio link's security properties or guarantee immunity from external attacks. This demo stores WiFi credentials in ordinary NVS; production hardware needs Secure Boot, Flash Encryption, port protection, and a recovery/commissioning policy. Real boot, pairing, button, and WiFi behavior still require tests on an ESP32-S3 board.
+The demo firmware uses authenticated BLE pairing, bonding, an owner lock, and protected attributes. The application cannot independently prove the radio link's security properties or guarantee immunity from external attacks. This demo stores WiFi credentials in ordinary NVS; production hardware needs Secure Boot, Flash Encryption, port protection, and a recovery/commissioning policy. Real boot, pairing, button, and WiFi behavior still require tests on an ESP32 board.

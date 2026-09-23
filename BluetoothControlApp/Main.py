@@ -185,7 +185,7 @@ class ControlApp:
         if not self.connected:
             return self._card([
                 ft.Text("No controller connected", size=20, weight=ft.FontWeight.BOLD),
-                ft.Text("Open Connect to find your ESP32-S3 controller."),
+                ft.Text("Open Connect to find your ESP32 controller."),
                 ft.Button("Connect a controller", on_click=lambda e: self._navigate("Connect")),
             ])
         metrics = []

@@ -1,4 +1,4 @@
-# ESP32-S3 BLE contract, version 1
+# ESP32 BLE contract, version 1
 
 The [ESP demo firmware](../ESP-Demo/BuildGuide.md) implements this contract for simulated sensors. The older WiFi/MQTT firmware does not. The GATT map and message format were selected for this prototype because the redesign handover left them open.
 
@@ -53,4 +53,4 @@ Failure uses `status=error` and a short error string. `set_wifi` success means t
 
 BOOT GPIO 0 toggles demo low-power mode. WiFi is disabled and climate, light, gas, and relays are paused. Level, pH, and TDS continue to produce simulated readings when Dashboard is open. State notifications continue in both modes. The simulated battery percentage is fixed at 74 and is not an actual measurement. This is an awake low-power simulation, not ESP deep sleep.
 
-The firmware has no physical sensor or relay drivers and no ESP32-S3 pin map for them. A production revision needs physical sensor presence checks, safe actuation behavior, hardware security features, a recovery process for a lost owner laptop, and real-board BLE/WiFi tests.
+The firmware has no physical sensor or relay drivers and no ESP32 pin map for them. A production revision needs physical sensor presence checks, safe actuation behavior, hardware security features, a recovery process for a lost owner laptop, and real-board BLE/WiFi tests.

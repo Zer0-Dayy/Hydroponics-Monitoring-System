@@ -1,4 +1,4 @@
-"""Local controller simulator for UI review without ESP32-S3 hardware."""
+"""Local controller simulator for UI review without ESP32 hardware."""
 
 import asyncio
 import random
@@ -33,7 +33,7 @@ class DemoService:
 
     async def scan(self):
         await asyncio.sleep(0.3)
-        return [Controller("Demo ESP32-S3", "DEMO-CONTROLLER")]
+        return [Controller("Demo ESP32", "DEMO-CONTROLLER")]
 
     async def connect(self, _controller):
         self.connected = True
