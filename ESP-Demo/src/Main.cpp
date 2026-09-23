@@ -42,7 +42,7 @@ constexpr DeviceType Catalog[] = {
     {"level", "Reservoir level", "Reservoir level", "cm", 24.0f, 0.4f, true, false},
     {"ph", "Solution pH", "Solution pH", "pH", 6.1f, 0.08f, true, false},
     {"tds", "Nutrient strength", "Nutrient strength", "ppm", 740.0f, 8.0f, true, false},
-    {"climate", "Air temperature & humidity", "Air temperature & humidity", "C", 25.0f, 0.3f, false, false},
+    {"climate", "Air temperature", "Air temperature", "°C", 25.0f, 0.3f, false, false},
     {"light", "Ambient light", "Ambient light", "raw", 780.0f, 20.0f, false, false},
     {"gas", "CO sensor", "CO sensor", "raw", 0.0f, 0.0f, false, false},
     {"relay1", "Relay 1", "Relay 1", "on/off", 0.0f, 0.0f, false, true},
@@ -102,8 +102,25 @@ void notifyFrame(NimBLECharacteristic* characteristic, const String& json) {
     const auto* bytes = reinterpret_cast<const uint8_t*>(frame.c_str());
     for (size_t offset = 0; offset < frame.length(); offset += 20) {
         const size_t count = std::min(static_cast<size_t>(20), frame.length() - offset);
-        if (!characteristic->notify(bytes + offset, count)) break;
-        delay(8);
+        bool sent = false;
+        for (int attempt = 0; attempt < 5 && authenticated.load(); ++attempt) {
+            if (characteristic->notify(bytes + offset, count)) {
+                sent = true;
+                break;
+            }
+            delay(25);  // Allow the BLE host to drain a congested notification queue.
+        }
+        if (!sent) {
+            if (!authenticated.load() || server->getConnectedCount() == 0) return;
+            // The client cannot recover a truncated length-prefixed frame. Reset the
+            // connection so both decoders start from an empty stream on reconnect.
+            Serial.printf("BLE notification interrupted at byte %u; resetting link\n",
+                          static_cast<unsigned>(offset));
+            const auto peers = server->getPeerDevices();
+            if (!peers.empty()) server->disconnect(peers.front());
+            return;
+        }
+        delay(15);
     }
 }
 
@@ -130,11 +147,12 @@ String stateJson() {
 }
 
 void publishState() {
-    const String frame = framedJson(stateJson());
+    const String json = stateJson();
+    const String frame = framedJson(json);
     if (stateCharacteristic && !frame.isEmpty()) {
         stateCharacteristic->setValue(
             reinterpret_cast<const uint8_t*>(frame.c_str()), frame.length());
-        notifyFrame(stateCharacteristic, stateJson());
+        notifyFrame(stateCharacteristic, json);
     }
 }
 
@@ -340,6 +358,8 @@ void publishTelemetry() {
     }
 }
 
+void resetCommandStream();
+
 class ServerCallbacks final : public NimBLEServerCallbacks {
     void onConnect(NimBLEServer* connectedServer, NimBLEConnInfo& info) override {
         Serial.println("BLE client connected; awaiting authenticated pairing");
@@ -352,6 +372,7 @@ class ServerCallbacks final : public NimBLEServerCallbacks {
         Serial.printf("BLE client disconnected (reason %d)\n", reason);
         authenticated.store(false);
         telemetrySubscribed.store(false);
+        resetCommandStream();
         NimBLEDevice::startAdvertising();
     }
 
@@ -392,6 +413,13 @@ class CommandCallbacks final : public NimBLECharacteristicCallbacks {
     std::vector<uint8_t> received;
     unsigned long lastChunk = 0;
 
+public:
+    void reset() {
+        received.clear();
+        lastChunk = 0;
+    }
+
+private:
     void onWrite(NimBLECharacteristic* characteristic, NimBLEConnInfo& info) override {
         if (!authenticated.load() || !info.isEncrypted() ||
             !info.isAuthenticated() || !info.isBonded()) {
@@ -430,6 +458,10 @@ class CommandCallbacks final : public NimBLECharacteristicCallbacks {
 ServerCallbacks serverCallbacks;
 TelemetryCallbacks telemetryCallbacks;
 CommandCallbacks commandCallbacks;
+
+void resetCommandStream() {
+    commandCallbacks.reset();
+}
 
 void setupBle() {
     pairingPasskey = 100000 + esp_random() % 900000;

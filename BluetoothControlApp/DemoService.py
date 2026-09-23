@@ -27,7 +27,7 @@ class DemoService:
             {"id": "demo-level", "type": "level", "label": "Reservoir level", "online": True},
             {"id": "demo-ph", "type": "ph", "label": "Solution pH", "online": True},
             {"id": "demo-tds", "type": "tds", "label": "Nutrient strength", "online": True},
-            {"id": "demo-climate", "type": "climate", "label": "Air temperature & humidity", "online": True},
+            {"id": "demo-climate", "type": "climate", "label": "Air temperature", "online": True},
         ]
         self.task: asyncio.Task | None = None
 

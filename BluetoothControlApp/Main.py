@@ -9,16 +9,21 @@ import flet as ft
 
 from Catalog import BY_KEY, TYPES
 from DemoService import DemoService
+from Meter import TARGETS
 from Store import Store
 
 
-INK = "#17324B"
-MUTED = "#617286"
-BLUE = "#0E7490"
-BACKGROUND = "#F4F8FA"
+INK = "#16343E"
+MUTED = "#647C83"
+BLUE = "#087F78"
+BACKGROUND = "#F3F7F5"
 CARD = "#FFFFFF"
-DISABLED = "#E9EDF0"
-WARNING = "#FFF2CF"
+DISABLED = "#E9EFED"
+WARNING = "#FFF3DB"
+GOOD = "#198468"
+HIGH = "#C7664C"
+LOW = "#B67A24"
+BORDER = "#E3EBE8"
 STALENESS_SECONDS = 15
 
 
@@ -35,6 +40,11 @@ class ControlApp:
         self.state = {}
         self.last_state = 0.0
         self.busy = False
+        self.reconnecting = False
+        self.auto_reconnect = False
+        self.reconnect_task = None
+        self.closed = False
+        self.connection_lock = asyncio.Lock()
         self.subscription_lock = asyncio.Lock()
         self.passkey = ft.TextField(label="BLE passkey from ESP serial monitor", width=300, max_length=6)
         self.ssid = ft.TextField(label="WiFi network name (SSID)", width=420)
@@ -68,6 +78,8 @@ class ControlApp:
         return self.low_power and kind.key not in allowed
 
     def _state_received(self, message):
+        if self.closed:
+            return
         old = (self.state.get("mode"), self.state.get("wifi"), self.state_fresh)
         self.state = message
         self.last_state = time.monotonic()
@@ -76,7 +88,7 @@ class ControlApp:
             self.render()
 
     def _telemetry_received(self, message):
-        if self.section != "Dashboard":
+        if self.closed or self.section != "Dashboard":
             return
         try:
             value = float(message["value"])
@@ -94,17 +106,64 @@ class ControlApp:
             self.render()
 
     def _disconnected(self, reason="BLE connection lost"):
+        if self.closed:
+            return
         self.state = {}
         self.last_state = 0.0
         self.devices = []
         self.readings.clear()
+        if self.auto_reconnect and self.controller and not self.closed:
+            self.notice("BLE connection lost. Trying to reconnect…")
+            if self.reconnect_task is None or self.reconnect_task.done():
+                self.reconnect_task = self.page.run_task(self._reconnect)
+        else:
+            self.notice(reason)
         self.render()
-        self.notice(reason)
+
+    async def _reconnect(self):
+        self.reconnecting = True
+        self.render()
+        try:
+            for delay in (2, 4, 8):
+                await asyncio.sleep(delay)
+                if not self.auto_reconnect or self.closed or self.connected:
+                    return
+                try:
+                    async with self.connection_lock:
+                        if not self.auto_reconnect or self.closed:
+                            return
+                        candidates = await self.service.scan()
+                        match = next((item for item in candidates
+                                      if item.address == self.controller.address), None)
+                        if match is None:
+                            continue
+                        await self.service.connect(match, "")
+                        await self.service.set_telemetry_enabled(self.section == "Dashboard")
+                        if self.section == "Sensors & devices":
+                            await self._load_devices()
+                        self.controller = match
+                    self.notice("Controller reconnected.")
+                    return
+                except ValueError:
+                    break  # A lost bond needs a fresh passkey in Connect.
+                except Exception:
+                    try:
+                        await self.service.disconnect()
+                    except Exception:
+                        pass  # The next attempt creates a new BLE client.
+            if self.auto_reconnect and not self.closed:
+                self.notice("Automatic reconnect stopped. Open Connect to try again.")
+        finally:
+            self.reconnecting = False
+            if not self.closed:
+                self.render()
 
     async def _watch_state(self):
-        while True:
+        while not self.closed:
             was_fresh = self.state_fresh
             await asyncio.sleep(2)
+            if self.closed:
+                return
             if was_fresh and not self.state_fresh:
                 self.render()
 
@@ -128,44 +187,67 @@ class ControlApp:
             self.notice(f"Could not update this page: {error}")
 
     async def _close(self, _event):
-        await self.service.disconnect()
+        self.closed = True
+        self.auto_reconnect = False
+        if self.reconnect_task and not self.reconnect_task.done():
+            self.reconnect_task.cancel()
+        async with self.connection_lock:
+            await self.service.disconnect()
         self.store.close()
 
     def _card(self, controls, disabled=False, width=None):
         return ft.Container(
             content=ft.Column(controls=controls, spacing=12),
             bgcolor=DISABLED if disabled else CARD,
-            padding=20, border_radius=14, width=width, disabled=disabled,
+            padding=20, border_radius=18, width=width, disabled=disabled,
+        )
+
+    def _pill(self, label, color, background):
+        return ft.Container(
+            content=ft.Text(label, size=12, weight=ft.FontWeight.BOLD, color=color),
+            bgcolor=background, padding=ft.Padding.symmetric(horizontal=11, vertical=7),
+            border_radius=30,
         )
 
     def _status(self):
+        if self.reconnecting:
+            return "Reconnecting to controller", LOW
         if not self.connected:
-            return "Disconnected", MUTED
+            return "Controller offline", MUTED
         if not self.state_fresh:
-            return "State stale — controls paused", "#A33C2B"
+            return "State stale · controls paused", HIGH
         if self.low_power:
-            return "LOW POWER · WiFi off", "#9B6500"
-        return f"Connected · {self.state.get('node', 'Controller')}", BLUE
+            return "Low power · WiFi off", LOW
+        return f"Connected · {self.state.get('node', 'Controller')}", GOOD
 
     def _header(self):
         label, color = self._status()
-        badge = self._card([
-            ft.Text(label, color=color, weight=ft.FontWeight.BOLD),
-            ft.Text("Demo controller" if self.demo else "BLE controller", size=12, color=MUTED),
-        ])
         return ft.Row(controls=[
+            ft.Container(
+                content=ft.Icon(ft.Icons.WATER_DROP_ROUNDED, color=CARD, size=30),
+                bgcolor=BLUE, width=54, height=54, border_radius=16,
+                alignment=ft.Alignment.CENTER,
+            ),
             ft.Column(controls=[
-                ft.Text("Hydroponics Control", size=27, weight=ft.FontWeight.BOLD, color=INK),
-                ft.Text("Local monitoring and controller setup", color=MUTED),
-            ], expand=True), badge,
-        ])
+                ft.Text("Hydroponics Control", size=26, weight=ft.FontWeight.BOLD, color=INK),
+                ft.Text("Live monitoring · local data · secure setup", size=12, color=MUTED),
+            ], expand=True, spacing=2),
+            self._pill(label, color, "#E6F4EF" if color == GOOD else WARNING if color == LOW else DISABLED),
+        ], spacing=14, wrap=True)
 
     def _navigation(self):
+        tabs = (
+            ("Dashboard", ft.Icons.DASHBOARD_ROUNDED),
+            ("Connect", ft.Icons.BLUETOOTH_SEARCHING),
+            ("WiFi configuration", ft.Icons.WIFI_ROUNDED),
+            ("Sensors & devices", ft.Icons.TUNE_ROUNDED),
+        )
         return ft.Row(controls=[
-            ft.Button(content=title, on_click=lambda e, name=title: self._navigate(name),
+            ft.Button(content=title, icon=icon,
+                      on_click=lambda e, name=title: self._navigate(name),
                       bgcolor=BLUE if self.section == title else CARD,
                       color=CARD if self.section == title else INK)
-            for title in ("Dashboard", "Connect", "WiFi configuration", "Sensors & devices")
+            for title, icon in tabs
         ], wrap=True, spacing=8)
 
     def render(self):
@@ -177,49 +259,90 @@ class ControlApp:
         }[self.section]()
         self.page.clean()
         self.page.add(ft.Column(
-            controls=[self._header(), self._navigation(), ft.Divider(), body],
-            spacing=16, scroll=ft.ScrollMode.AUTO, expand=True,
+            controls=[self._header(), self._navigation(), ft.Divider(color=BORDER), body],
+            spacing=18, scroll=ft.ScrollMode.AUTO, expand=True,
         ))
         self.page.update()
+
+    def _meter(self, device, metric, value, unit, stamp):
+        kind = next((item for item in TYPES if item.label == metric), None)
+        target = TARGETS.get(kind.key) if kind else None
+        paused = bool(kind and self._paused(kind))
+        fresh = time.monotonic() - stamp < STALENESS_SECONDS and not paused
+        status = "Paused" if paused else "Stale" if not fresh else target.status(value) if target else "Live"
+        color = MUTED if not fresh or not target else GOOD if status == "Normal" else LOW if status == "Low" else HIGH
+        progress = target.fraction(value) if target and fresh else 0.0
+        display_value = f"{value:g}" if fresh else "—"
+        icon = {
+            "level": ft.Icons.WATER_DROP_ROUNDED,
+            "ph": ft.Icons.SCIENCE_ROUNDED,
+            "tds": ft.Icons.GRAIN_ROUNDED,
+            "climate": ft.Icons.THERMOSTAT_ROUNDED,
+            "light": ft.Icons.WB_SUNNY_ROUNDED,
+            "gas": ft.Icons.AIR_ROUNDED,
+        }.get(kind.key if kind else "", ft.Icons.SENSORS_ROUNDED)
+        ring = ft.Stack(width=116, height=116, alignment=ft.Alignment.CENTER, controls=[
+            ft.ProgressRing(value=progress, width=112, height=112, stroke_width=10,
+                            color=color, bgcolor=DISABLED, semantics_label=f"{metric}: {status}"),
+            ft.Container(width=112, height=112, alignment=ft.Alignment.CENTER,
+                         content=ft.Column(controls=[
+                             ft.Text(display_value, size=23, weight=ft.FontWeight.BOLD, color=color),
+                             ft.Text(unit if fresh else "offline", size=11, color=MUTED),
+                         ], spacing=0, alignment=ft.MainAxisAlignment.CENTER,
+                            horizontal_alignment=ft.CrossAxisAlignment.CENTER)),
+        ])
+        return ft.Container(
+            content=ft.Column(controls=[
+                ft.Row(controls=[ft.Icon(icon, color=BLUE, size=21),
+                                 ft.Text(metric, size=16, weight=ft.FontWeight.BOLD, color=INK, expand=True)],
+                       spacing=8),
+                ft.Row(controls=[ring, ft.Column(controls=[
+                    self._pill(status.upper(), color, DISABLED if not fresh else "#E8F4EF" if status == "Normal" else WARNING if status == "Low" else "#FBECE7"),
+                    ft.Text(target.caption if target else "No target set for this sensor",
+                            size=11, color=MUTED, width=145),
+                    ft.Text("Updated just now" if fresh else "Awaiting active readings",
+                            size=11, color=MUTED),
+                ], spacing=9)], spacing=16),
+                ft.Text(device, size=10, color=MUTED),
+            ], spacing=12),
+            bgcolor=CARD, border_radius=18, padding=18, width=324,
+        )
 
     def _dashboard(self):
         if not self.connected:
             return self._card([
-                ft.Text("No controller connected", size=20, weight=ft.FontWeight.BOLD),
-                ft.Text("Open Connect to find your ESP32 controller."),
-                ft.Button("Connect a controller", on_click=lambda e: self._navigate("Connect")),
+                ft.Icon(ft.Icons.BLUETOOTH_SEARCHING, color=BLUE, size=36),
+                ft.Text("Connect your controller", size=22, weight=ft.FontWeight.BOLD, color=INK),
+                ft.Text("Scan nearby ESP32 controllers to begin monitoring your system.", color=MUTED),
+                ft.Button("Find a controller", icon=ft.Icons.BLUETOOTH_SEARCHING,
+                          on_click=lambda e: self._navigate("Connect"), bgcolor=BLUE, color=CARD),
             ])
-        metrics = []
-        for (device, metric), (value, unit, stamp) in sorted(self.readings.items()):
-            kind = next((item for item in TYPES if item.label == metric), None)
-            paused = bool(kind and self._paused(kind))
-            fresh = time.monotonic() - stamp < 15 and not paused
-            value_text = "Paused in low-power mode" if paused else (
-                f"{value:g} {unit}" if fresh else "No recent reading"
-            )
-            metrics.append(self._card([
-                ft.Text(metric, color=MUTED),
-                ft.Text(value_text, size=23,
-                        weight=ft.FontWeight.BOLD, color=INK if fresh else MUTED),
-                ft.Text(device, size=11, color=MUTED),
-            ], disabled=not fresh, width=235))
+        metrics = [self._meter(device, metric, value, unit, stamp)
+                   for (device, metric), (value, unit, stamp) in sorted(self.readings.items())]
         if not metrics:
             metrics = [self._card([ft.Text("Waiting for sensor readings…", color=MUTED)])]
-        history = [ft.Text("Latest readings saved on this laptop", size=17, weight=ft.FontWeight.BOLD)]
+        history = [ft.Text("Recent local readings", size=17, weight=ft.FontWeight.BOLD, color=INK)]
         for received, node, device, metric, value, unit in self.store.recent(8):
-            history.append(ft.Text(f"{received[11:19]} UTC  ·  {metric}: {value:g} {unit}  ·  {node}"))
+            history.append(ft.Text(f"{received[11:19]} UTC  ·  {metric}: {value:g} {unit}  ·  {node}",
+                                   size=12, color=MUTED))
         return ft.Column(controls=[
             ft.Row(controls=[
-                self._card([ft.Text("Controller mode", color=MUTED),
+                self._card([ft.Text("CONTROLLER MODE", size=11, color=MUTED, weight=ft.FontWeight.BOLD),
                             ft.Text("Low power" if self.low_power else self.state.get("mode", "Unknown").replace("_", " ").title(),
-                                    size=20, weight=ft.FontWeight.BOLD)]),
-                self._card([ft.Text("WiFi", color=MUTED),
-                            ft.Text(str(self.state.get("wifi", "Unknown")).title(), size=20, weight=ft.FontWeight.BOLD)]),
-                self._card([ft.Text("Readings stored locally", color=MUTED),
-                            ft.Text(str(self.store.count()), size=20, weight=ft.FontWeight.BOLD)]),
+                                    size=21, color=INK, weight=ft.FontWeight.BOLD)], width=220),
+                self._card([ft.Text("WIFI STATUS", size=11, color=MUTED, weight=ft.FontWeight.BOLD),
+                            ft.Text(str(self.state.get("wifi", "Unknown")).title(),
+                                    size=21, color=INK, weight=ft.FontWeight.BOLD)], width=220),
+                self._card([ft.Text("LOCAL READINGS", size=11, color=MUTED, weight=ft.FontWeight.BOLD),
+                            ft.Text(str(self.store.count()), size=21, color=INK,
+                                    weight=ft.FontWeight.BOLD)], width=220),
             ], wrap=True, spacing=12),
-            ft.Text("Live sensors", size=20, weight=ft.FontWeight.BOLD, color=INK),
-            ft.Row(controls=metrics, wrap=True, spacing=12),
+            ft.Row(controls=[ft.Text("Live sensors", size=22, weight=ft.FontWeight.BOLD, color=INK),
+                             self._pill("SIMULATED DEMO RANGES", BLUE, "#E7F3F1")],
+                   wrap=True, spacing=12),
+            ft.Text("Ring position shows the reading across its display scale. Color and label show the demo target status.",
+                    color=MUTED, size=12),
+            ft.Row(controls=metrics, wrap=True, spacing=14),
             self._card(history),
         ], spacing=16)
 
@@ -320,25 +443,39 @@ class ControlApp:
             self.render()
 
     async def _connect(self, controller):
+        self.auto_reconnect = False
+        if self.reconnect_task and not self.reconnect_task.done():
+            self.reconnect_task.cancel()
         self.busy = True
         self.render()
         try:
-            await self.service.connect(controller, (self.passkey.value or "").strip())
+            async with self.connection_lock:
+                await self.service.connect(controller, (self.passkey.value or "").strip())
+                await self.service.set_telemetry_enabled(True)
             self.passkey.value = ""
             self.controller = controller
             self.devices = []
             self.readings.clear()
             self.section = "Dashboard"
-            await self.service.set_telemetry_enabled(True)
+            self.auto_reconnect = True
             self.notice(f"Connected to {controller.label}.")
         except Exception as error:
+            try:
+                await self.service.disconnect()
+            except Exception:
+                pass
             self.notice(f"Connection failed: {error}")
         finally:
             self.busy = False
             self.render()
 
     async def _disconnect(self, _event):
-        await self.service.disconnect()
+        self.auto_reconnect = False
+        if self.reconnect_task and not self.reconnect_task.done():
+            self.reconnect_task.cancel()
+        async with self.connection_lock:
+            await self.service.disconnect()
+        self.controller = None
         self._disconnected("Disconnected from controller.")
 
     async def _load_devices(self):

@@ -20,7 +20,7 @@ TYPES = (
     DeviceType("level", "Reservoir level", "Ultra_Sonic_Sensor", (23, 22), "cm", True),
     DeviceType("ph", "Solution pH", "Ph_sensor", (35,), "pH", True),
     DeviceType("tds", "Nutrient strength", "TDS_sensor", (34,), "ppm", True),
-    DeviceType("climate", "Air temperature & humidity", "Temperature_Humidity_DHT21", (4,), "°C / %"),
+    DeviceType("climate", "Air temperature", "Temperature_Humidity_DHT21", (4,), "°C"),
     DeviceType("light", "Ambient light", "Analog_Light", (36,), "raw"),
     DeviceType("gas", "CO sensor", "MQ_7", (32, 33), "raw"),
     DeviceType("relay1", "Relay 1", "Relay_Actuator", (21,), "on/off", kind="actuator"),
