@@ -38,8 +38,7 @@ def install_file(source: Path, destination: Path, executable: bool = False) -> N
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Install Hydroponics Control for this user")
-    parser.add_argument("--desktop", action="store_true", help="also add a Desktop shortcut")
-    args = parser.parse_args()
+    parser.parse_args()
 
     source = Path(__file__).resolve().parent
     executable = source / "dist" / "HydroponicsControl"
@@ -77,17 +76,9 @@ def main() -> None:
         subprocess.run(["update-desktop-database", str(applications_dir)], check=False)
     print(f"Application launcher installed: {launcher}")
 
-    if args.desktop:
-        desktop_dir = Path.home() / "Desktop"
-        if desktop_dir.is_dir():
-            desktop_launcher = desktop_dir / launcher.name
-            shutil.copy2(launcher, desktop_launcher)
-            desktop_launcher.chmod(0o755)
-            remove_old_launcher(desktop_dir / "HydroponicsControl.desktop", installed_executable)
-            print(f"Desktop shortcut added: {desktop_launcher}")
-            print("On Ubuntu, right-click the shortcut and choose Allow Launching if prompted.")
-        else:
-            print("No ~/Desktop folder found; the app is available from the application menu.")
+    desktop_dir = Path.home() / "Desktop"
+    remove_old_launcher(desktop_dir / launcher.name, installed_executable)
+    remove_old_launcher(desktop_dir / "HydroponicsControl.desktop", installed_executable)
 
 
 if __name__ == "__main__":
