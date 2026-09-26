@@ -1,6 +1,6 @@
 # ESP32 BLE contract, version 1
 
-The [ESP demo firmware](../ESP-Demo/BuildGuide.md) implements this contract for simulated sensors. The older WiFi/MQTT firmware does not. The GATT map and message format were selected for this prototype because the redesign handover left them open.
+The [ESP demo firmware](ESP-Demo/BuildGuide.md) implements this contract for simulated sensors. The older WiFi/MQTT firmware does not. The GATT map and message format were selected for this prototype because the redesign handover left them open.
 
 ## GATT service
 

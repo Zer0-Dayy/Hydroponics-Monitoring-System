@@ -4,6 +4,7 @@ import argparse
 import asyncio
 import math
 import time
+from dataclasses import dataclass
 
 import flet as ft
 
@@ -27,6 +28,18 @@ BORDER = "#E3EBE8"
 STALENESS_SECONDS = 15
 
 
+@dataclass
+class MeterControls:
+    card: ft.Container
+    ring: ft.ProgressRing
+    value: ft.Text
+    unit: ft.Text
+    status_pill: ft.Container
+    status_label: ft.Text
+    updated: ft.Text
+    snapshot: tuple | None = None
+
+
 class ControlApp:
     def __init__(self, page: ft.Page, demo: bool):
         self.page = page
@@ -39,6 +52,11 @@ class ControlApp:
         self.readings = {}
         self.state = {}
         self.last_state = 0.0
+        self.meter_controls = {}
+        self.dashboard_metrics = None
+        self.dashboard_placeholder = None
+        self.dashboard_history = None
+        self.dashboard_count = None
         self.busy = False
         self.reconnecting = False
         self.auto_reconnect = False
@@ -80,11 +98,13 @@ class ControlApp:
     def _state_received(self, message):
         if self.closed:
             return
-        old = (self.state.get("mode"), self.state.get("wifi"), self.state_fresh)
+        old = (self.state.get("node"), self.state.get("mode"), self.state.get("wifi"),
+               tuple(self.state.get("active_types", [])), self.state_fresh)
         self.state = message
         self.last_state = time.monotonic()
-        new = (self.state.get("mode"), self.state.get("wifi"), self.state_fresh)
-        if old != new or self.section == "Dashboard":
+        new = (self.state.get("node"), self.state.get("mode"), self.state.get("wifi"),
+               tuple(self.state.get("active_types", [])), self.state_fresh)
+        if old != new:
             self.render()
 
     def _telemetry_received(self, message):
@@ -101,9 +121,9 @@ class ControlApp:
         except (KeyError, ValueError, TypeError):
             return
         self.store.record(node, device, metric, value, unit)
-        self.readings[(device, metric)] = (value, unit, time.monotonic())
-        if self.section == "Dashboard":
-            self.render()
+        key = (device, metric)
+        self.readings[key] = (value, unit, time.monotonic())
+        self._refresh_dashboard_reading(key)
 
     def _disconnected(self, reason="BLE connection lost"):
         if self.closed:
@@ -166,6 +186,12 @@ class ControlApp:
                 return
             if was_fresh and not self.state_fresh:
                 self.render()
+            elif self.section == "Dashboard" and self.dashboard_metrics:
+                stale_cards = [view.card for key, view in self.meter_controls.items()
+                               if key in self.readings and
+                               self._paint_meter(view, key[1], *self.readings[key])]
+                if stale_cards:
+                    self.page.update(*stale_cards)
 
     def notice(self, message):
         self.page.show_dialog(ft.SnackBar(ft.Text(message)))
@@ -251,6 +277,11 @@ class ControlApp:
         ], wrap=True, spacing=8)
 
     def render(self):
+        self.meter_controls = {}
+        self.dashboard_metrics = None
+        self.dashboard_placeholder = None
+        self.dashboard_history = None
+        self.dashboard_count = None
         body = {
             "Dashboard": self._dashboard,
             "Connect": self._connect_page,
@@ -264,15 +295,38 @@ class ControlApp:
         ))
         self.page.update()
 
-    def _meter(self, device, metric, value, unit, stamp):
+    def _paint_meter(self, view, metric, value, unit, stamp):
         kind = next((item for item in TYPES if item.label == metric), None)
         target = TARGETS.get(kind.key) if kind else None
         paused = bool(kind and self._paused(kind))
         fresh = time.monotonic() - stamp < STALENESS_SECONDS and not paused
         status = "Paused" if paused else "Stale" if not fresh else target.status(value) if target else "Live"
+        snapshot = (status, value if fresh else None, unit if fresh else None)
+        if view.snapshot == snapshot:
+            return False
         color = MUTED if not fresh or not target else GOOD if status == "Normal" else LOW if status == "Low" else HIGH
         progress = target.fraction(value) if target and fresh else 0.0
-        display_value = f"{value:g}" if fresh else "—"
+        view.ring.value = progress
+        view.ring.color = color
+        view.ring.semantics_label = f"{metric}: {status}"
+        view.value.value = f"{value:g}" if fresh else "—"
+        view.value.color = color
+        view.unit.value = unit if fresh else "paused" if paused else "stale"
+        view.status_label.value = status.upper()
+        view.status_label.color = color
+        view.status_pill.bgcolor = (
+            DISABLED if not fresh else "#E8F4EF" if status == "Normal"
+            else WARNING if status == "Low" else "#FBECE7" if status == "High"
+            else "#E7F3F1"
+        )
+        view.updated.value = ("Updated just now" if fresh else
+                              "Paused in low-power mode" if paused else "Awaiting active readings")
+        view.snapshot = snapshot
+        return True
+
+    def _meter(self, device, metric, value, unit, stamp):
+        kind = next((item for item in TYPES if item.label == metric), None)
+        target = TARGETS.get(kind.key) if kind else None
         icon = {
             "level": ft.Icons.WATER_DROP_ROUNDED,
             "ph": ft.Icons.SCIENCE_ROUNDED,
@@ -281,32 +335,71 @@ class ControlApp:
             "light": ft.Icons.WB_SUNNY_ROUNDED,
             "gas": ft.Icons.AIR_ROUNDED,
         }.get(kind.key if kind else "", ft.Icons.SENSORS_ROUNDED)
+        ring_control = ft.ProgressRing(value=0, width=112, height=112, stroke_width=10,
+                                       bgcolor=DISABLED)
+        value_control = ft.Text("", size=23, weight=ft.FontWeight.BOLD)
+        unit_control = ft.Text("", size=11, color=MUTED)
+        status_label = ft.Text("", size=12, weight=ft.FontWeight.BOLD)
+        status_pill = ft.Container(
+            content=status_label, padding=ft.Padding.symmetric(horizontal=11, vertical=7),
+            border_radius=30,
+        )
+        updated_control = ft.Text("", size=11, color=MUTED)
         ring = ft.Stack(width=116, height=116, alignment=ft.Alignment.CENTER, controls=[
-            ft.ProgressRing(value=progress, width=112, height=112, stroke_width=10,
-                            color=color, bgcolor=DISABLED, semantics_label=f"{metric}: {status}"),
+            ring_control,
             ft.Container(width=112, height=112, alignment=ft.Alignment.CENTER,
                          content=ft.Column(controls=[
-                             ft.Text(display_value, size=23, weight=ft.FontWeight.BOLD, color=color),
-                             ft.Text(unit if fresh else "offline", size=11, color=MUTED),
+                             value_control, unit_control,
                          ], spacing=0, alignment=ft.MainAxisAlignment.CENTER,
                             horizontal_alignment=ft.CrossAxisAlignment.CENTER)),
         ])
-        return ft.Container(
+        card = ft.Container(
             content=ft.Column(controls=[
                 ft.Row(controls=[ft.Icon(icon, color=BLUE, size=21),
                                  ft.Text(metric, size=16, weight=ft.FontWeight.BOLD, color=INK, expand=True)],
                        spacing=8),
                 ft.Row(controls=[ring, ft.Column(controls=[
-                    self._pill(status.upper(), color, DISABLED if not fresh else "#E8F4EF" if status == "Normal" else WARNING if status == "Low" else "#FBECE7"),
+                    status_pill,
                     ft.Text(target.caption if target else "No target set for this sensor",
                             size=11, color=MUTED, width=145),
-                    ft.Text("Updated just now" if fresh else "Awaiting active readings",
-                            size=11, color=MUTED),
+                    updated_control,
                 ], spacing=9)], spacing=16),
                 ft.Text(device, size=10, color=MUTED),
             ], spacing=12),
             bgcolor=CARD, border_radius=18, padding=18, width=324,
         )
+        view = MeterControls(card, ring_control, value_control, unit_control,
+                             status_pill, status_label, updated_control)
+        self._paint_meter(view, metric, value, unit, stamp)
+        return view
+
+    def _history_controls(self):
+        history = [ft.Text("Recent local readings", size=17, weight=ft.FontWeight.BOLD, color=INK)]
+        for received, node, device, metric, value, unit in self.store.recent(8):
+            history.append(ft.Text(f"{received[11:19]} UTC  ·  {metric}: {value:g} {unit}  ·  {node}",
+                                   size=12, color=MUTED))
+        return history
+
+    def _refresh_dashboard_reading(self, key):
+        if self.dashboard_metrics is None or self.dashboard_history is None:
+            return
+        value, unit, stamp = self.readings[key]
+        view = self.meter_controls.get(key)
+        if view is None:
+            view = self._meter(*key, value, unit, stamp)
+            self.meter_controls[key] = view
+            if self.dashboard_placeholder is not None:
+                self.dashboard_metrics.controls.remove(self.dashboard_placeholder)
+                self.dashboard_placeholder = None
+            self.dashboard_metrics.controls.append(view.card)
+            changed = self.dashboard_metrics
+        else:
+            changed = view.card if self._paint_meter(view, key[1], value, unit, stamp) else None
+        self.dashboard_count.value = str(self.store.count())
+        self.dashboard_history.controls = self._history_controls()
+        controls = [control for control in (changed, self.dashboard_count, self.dashboard_history)
+                    if control is not None]
+        self.page.update(*controls)
 
     def _dashboard(self):
         if not self.connected:
@@ -317,14 +410,19 @@ class ControlApp:
                 ft.Button("Find a controller", icon=ft.Icons.BLUETOOTH_SEARCHING,
                           on_click=lambda e: self._navigate("Connect"), bgcolor=BLUE, color=CARD),
             ])
-        metrics = [self._meter(device, metric, value, unit, stamp)
-                   for (device, metric), (value, unit, stamp) in sorted(self.readings.items())]
+        metrics = []
+        for key, (value, unit, stamp) in sorted(self.readings.items()):
+            view = self._meter(*key, value, unit, stamp)
+            self.meter_controls[key] = view
+            metrics.append(view.card)
         if not metrics:
-            metrics = [self._card([ft.Text("Waiting for sensor readings…", color=MUTED)])]
-        history = [ft.Text("Recent local readings", size=17, weight=ft.FontWeight.BOLD, color=INK)]
-        for received, node, device, metric, value, unit in self.store.recent(8):
-            history.append(ft.Text(f"{received[11:19]} UTC  ·  {metric}: {value:g} {unit}  ·  {node}",
-                                   size=12, color=MUTED))
+            self.dashboard_placeholder = self._card([ft.Text("Waiting for sensor readings…", color=MUTED)])
+            metrics = [self.dashboard_placeholder]
+        self.dashboard_metrics = ft.Row(controls=metrics, wrap=True, spacing=14)
+        history_card = self._card(self._history_controls())
+        self.dashboard_history = history_card.content
+        self.dashboard_count = ft.Text(str(self.store.count()), size=21, color=INK,
+                                       weight=ft.FontWeight.BOLD)
         return ft.Column(controls=[
             ft.Row(controls=[
                 self._card([ft.Text("CONTROLLER MODE", size=11, color=MUTED, weight=ft.FontWeight.BOLD),
@@ -334,16 +432,15 @@ class ControlApp:
                             ft.Text(str(self.state.get("wifi", "Unknown")).title(),
                                     size=21, color=INK, weight=ft.FontWeight.BOLD)], width=220),
                 self._card([ft.Text("LOCAL READINGS", size=11, color=MUTED, weight=ft.FontWeight.BOLD),
-                            ft.Text(str(self.store.count()), size=21, color=INK,
-                                    weight=ft.FontWeight.BOLD)], width=220),
+                            self.dashboard_count], width=220),
             ], wrap=True, spacing=12),
             ft.Row(controls=[ft.Text("Live sensors", size=22, weight=ft.FontWeight.BOLD, color=INK),
                              self._pill("SIMULATED DEMO RANGES", BLUE, "#E7F3F1")],
                    wrap=True, spacing=12),
             ft.Text("Ring position shows the reading across its display scale. Color and label show the demo target status.",
                     color=MUTED, size=12),
-            ft.Row(controls=metrics, wrap=True, spacing=14),
-            self._card(history),
+            self.dashboard_metrics,
+            history_card,
         ], spacing=16)
 
     def _connect_page(self):

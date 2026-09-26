@@ -1,6 +1,6 @@
 # Hydroponics Control
 
-An Ubuntu desktop prototype for the ESP32 hydroponics controller. The GUI uses Flet and Bleak/BlueZ. The matching demo firmware and terminal build instructions are in [ESP-Demo](../ESP-Demo/BuildGuide.md). Run with `--demo` to review the screens without hardware.
+An Ubuntu desktop prototype for the ESP32 hydroponics controller. The GUI uses Flet and Bleak/BlueZ. The matching demo firmware and terminal build instructions are in [ESP-Demo](ESP-Demo/BuildGuide.md). Run with `--demo` to review the screens without hardware.
 
 ## What it does
 
@@ -10,6 +10,7 @@ An Ubuntu desktop prototype for the ESP32 hydroponics controller. The GUI uses F
 - Send WiFi SSID and password from a form. The app does not save the password and clears the field after sending. The ESP demo stores it in NVS.
 - Add or remove supported devices from a fixed catalog. The ESP persists the configured list and simulated readings follow it.
 - Show circular sensor meters with clearly labeled Low, Normal, High, Paused, or Stale states. The ranges are illustrative for simulated readings and must be calibrated for real crops and sensors.
+- Update live meter values and local history in place, preserving the Dashboard scroll position as readings arrive.
 - In low-power mode, gray out the WiFi page and nonessential sensor/device controls. Reservoir level, pH, and TDS remain active. A stale controller state pauses configuration.
 - Retry a dropped BLE connection a few times, then leave a clear manual Connect path if recovery fails.
 
@@ -26,7 +27,7 @@ python3 -m venv .venv
 .venv/bin/python Main.py --demo
 ~~~
 
-Omit `--demo` to connect to the ESP32. For first pairing, connect a local serial monitor to the ESP, reset it, and enter the six-digit passkey printed there in the app's Connect page. The app provides a temporary BlueZ pairing agent, so a separate Ubuntu Settings prompt is unnecessary. The first authenticated laptop becomes the demo controller's owner. See the firmware [BuildGuide](../ESP-Demo/BuildGuide.md) for flashing and reset details.
+Omit `--demo` to connect to the ESP32. For first pairing, connect a local serial monitor to the ESP, reset it, and enter the six-digit passkey printed there in the app's Connect page. The app provides a temporary BlueZ pairing agent, so a separate Ubuntu Settings prompt is unnecessary. The first authenticated laptop becomes the demo controller's owner. See the firmware [BuildGuide](ESP-Demo/BuildGuide.md) for flashing and reset details.
 
 ## Build an Ubuntu executable
 
