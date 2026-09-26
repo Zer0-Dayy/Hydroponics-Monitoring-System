@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="0zYbzbd_yarU_qOTZCWD">
-    <mxGraphModel dx="822" dy="481" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2416" dy="1415" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -34,14 +34,14 @@
             <mxPoint x="295.0000000000002" y="580" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Z5F_7De1hwaRzkl3mgee-7" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="5V Voltage Regulator" vertex="1">
+        <mxCell id="Z5F_7De1hwaRzkl3mgee-7" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="5V Micro-USB&lt;br&gt;Input Module" vertex="1">
           <mxGeometry height="60" width="120" x="30" y="290" as="geometry" />
         </mxCell>
         <mxCell id="Z5F_7De1hwaRzkl3mgee-12" edge="1" parent="1" source="Z5F_7De1hwaRzkl3mgee-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Z5F_7De1hwaRzkl3mgee-11">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Z5F_7De1hwaRzkl3mgee-9" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="&lt;b&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;TP5100 Charging Module&lt;/font&gt;&lt;/b&gt;" vertex="1">
-          <mxGeometry height="60" width="120" x="300" y="60" as="geometry" />
+        <mxCell id="Z5F_7De1hwaRzkl3mgee-9" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="&lt;b&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;CN3302 Charging Module&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="290.33" y="60" as="geometry" />
         </mxCell>
         <mxCell id="Z5F_7De1hwaRzkl3mgee-14" edge="1" parent="1" source="Z5F_7De1hwaRzkl3mgee-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=classic;startFill=1;">
           <mxGeometry relative="1" as="geometry">
@@ -53,8 +53,8 @@
             <mxPoint x="500" y="270" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Z5F_7De1hwaRzkl3mgee-11" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="&lt;b&gt;BMS Protection Board&lt;/b&gt;&lt;b&gt;&lt;/b&gt;" vertex="1">
-          <mxGeometry height="80" width="80" x="460" y="50" as="geometry" />
+        <mxCell id="Z5F_7De1hwaRzkl3mgee-11" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="HX-2S-A2&lt;br&gt;Battery Management System" vertex="1">
+          <mxGeometry height="110" width="131.97" x="434.01" y="35" as="geometry" />
         </mxCell>
         <mxCell id="Z5F_7De1hwaRzkl3mgee-16" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;h1 content=&quot;Batterie LIPO 2S 7.4V - 2600MAH 25C&quot; class=&quot;page-heading&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;LIPO Battery 2S&lt;/font&gt;&lt;/h1&gt;&lt;h1 content=&quot;Batterie LIPO 2S 7.4V - 2600MAH 25C&quot; class=&quot;page-heading&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;7.4V - 2600MAH 25C&amp;nbsp;&lt;/font&gt;&lt;/h1&gt;" vertex="1">
           <mxGeometry height="90" width="180" x="610" y="45" as="geometry" />
@@ -104,13 +104,13 @@
             <mxPoint x="90" y="410" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Z5F_7De1hwaRzkl3mgee-37" edge="1" parent="1" source="Z5F_7De1hwaRzkl3mgee-71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="Z5F_7De1hwaRzkl3mgee-36">
+        <mxCell id="Z5F_7De1hwaRzkl3mgee-37" edge="1" parent="1" source="Z5F_7De1hwaRzkl3mgee-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="Z5F_7De1hwaRzkl3mgee-36">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="80" y="680.03" />
-              <mxPoint x="80" y="810.03" />
+              <mxPoint x="80" y="680" />
+              <mxPoint x="80" y="810" />
             </Array>
-            <mxPoint x="70" y="680" as="sourcePoint" />
+            <mxPoint x="90" y="680" as="sourcePoint" />
             <mxPoint x="50" y="680.1428571428571" as="targetPoint" />
           </mxGeometry>
         </mxCell>
@@ -173,8 +173,10 @@
         <mxCell id="Z5F_7De1hwaRzkl3mgee-54" parent="1" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.transistors.pmos;pointerEvents=1;" value="" vertex="1">
           <mxGeometry height="100" width="60" x="440" y="270" as="geometry" />
         </mxCell>
-        <mxCell id="Z5F_7De1hwaRzkl3mgee-56" edge="1" parent="1" source="Z5F_7De1hwaRzkl3mgee-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="Z5F_7De1hwaRzkl3mgee-54">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="Z5F_7De1hwaRzkl3mgee-56" edge="1" parent="1" source="Z5F_7De1hwaRzkl3mgee-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" target="vpOEq-jD5VLKR6iy5RVP-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="210" y="320" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="Z5F_7De1hwaRzkl3mgee-57" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;h1 class=&quot;h1 namne_details&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;IRF4905PBF Transistor&lt;/font&gt;&lt;/h1&gt;" vertex="1">
           <mxGeometry height="30" width="60" x="510" y="305" as="geometry" />
@@ -217,16 +219,10 @@
         <mxCell id="Z5F_7De1hwaRzkl3mgee-69" parent="1" style="pointerEvents=1;verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.capacitors.capacitor_1;direction=west;" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;100 nF Ceramic&lt;/font&gt;" vertex="1">
           <mxGeometry height="20" width="50" x="230.33000000000004" y="877.5" as="geometry" />
         </mxCell>
-        <mxCell id="Z5F_7De1hwaRzkl3mgee-71" parent="1" style="pointerEvents=1;verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.resistors.resistor_2;" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;220 Ohms Resistor&lt;/font&gt;" vertex="1">
-          <mxGeometry height="20" width="80" x="90" y="670" as="geometry" />
-        </mxCell>
         <mxCell id="Z5F_7De1hwaRzkl3mgee-73" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" target="Z5F_7De1hwaRzkl3mgee-68">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="210.33" y="817.5" as="sourcePoint" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="Z5F_7De1hwaRzkl3mgee-78" edge="1" parent="1" source="Z5F_7De1hwaRzkl3mgee-71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" target="Z5F_7De1hwaRzkl3mgee-34">
-          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Z5F_7De1hwaRzkl3mgee-80" edge="1" parent="1" source="Z5F_7De1hwaRzkl3mgee-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" target="Z5F_7De1hwaRzkl3mgee-34">
           <mxGeometry relative="1" as="geometry" />
@@ -505,6 +501,26 @@
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="593" y="700" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="vpOEq-jD5VLKR6iy5RVP-8" edge="1" parent="1" source="vpOEq-jD5VLKR6iy5RVP-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=none;endFill=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="372.45631067961165" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vpOEq-jD5VLKR6iy5RVP-1" parent="1" style="pointerEvents=1;verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.resistors.resistor_2;rotation=90;" value="100 K-Ohms Resistor" vertex="1">
+          <mxGeometry height="20" width="100" x="322.47" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="vpOEq-jD5VLKR6iy5RVP-4" parent="1" style="pointerEvents=1;verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.signal_sources.protective_earth;" value="" vertex="1">
+          <mxGeometry height="20" width="25" x="359.97" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="vpOEq-jD5VLKR6iy5RVP-7" edge="1" parent="1" source="vpOEq-jD5VLKR6iy5RVP-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" target="vpOEq-jD5VLKR6iy5RVP-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vpOEq-jD5VLKR6iy5RVP-9" parent="1" style="pointerEvents=1;verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.resistors.resistor_2;" value="220 Ohms Resistor" vertex="1">
+          <mxGeometry height="20" width="100" x="240.33" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="vpOEq-jD5VLKR6iy5RVP-10" edge="1" parent="1" source="vpOEq-jD5VLKR6iy5RVP-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" target="Z5F_7De1hwaRzkl3mgee-54">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
