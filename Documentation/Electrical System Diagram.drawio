@@ -1,6 +1,6 @@
 <mxfile host="Electron">
-  <diagram name="Page-1" id="0zYbzbd_yarU_qOTZCWD">
-    <mxGraphModel dx="1030" dy="659" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+  <diagram name="Existing power circuit - Iteration 1" id="0zYbzbd_yarU_qOTZCWD">
+    <mxGraphModel dx="1030" dy="627" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -66,7 +66,7 @@
             <mxPoint x="340" y="580" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Z5F_7De1hwaRzkl3mgee-23" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="&lt;div&gt;LM2596&lt;/div&gt;5V Voltage Regulator" vertex="1">
+        <mxCell id="Z5F_7De1hwaRzkl3mgee-23" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="&lt;div&gt;MP1584&lt;/div&gt;5V Voltage Regulator" vertex="1">
           <mxGeometry height="60" width="120" x="440" y="160" as="geometry" />
         </mxCell>
         <mxCell id="Z5F_7De1hwaRzkl3mgee-27" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;endArrow=none;endFill=0;" value="">
@@ -323,7 +323,7 @@
         <mxCell id="Ny-SFjRtNa3XpVmlHieG-11" edge="1" parent="1" source="Ny-SFjRtNa3XpVmlHieG-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" target="Z5F_7De1hwaRzkl3mgee-23">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Ny-SFjRtNa3XpVmlHieG-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div style=&quot;line-height: 30%;&quot;&gt;&lt;h1 class=&quot;h1 namne_details&quot; style=&quot;line-height: 7.2px;&quot;&gt;&lt;font style=&quot;line-height: 2.4px; font-size: 8px;&quot;&gt;IRLZ440N&lt;/font&gt;&lt;/h1&gt;&lt;/div&gt;" vertex="1">
+        <mxCell id="Ny-SFjRtNa3XpVmlHieG-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div style=&quot;line-height: 30%;&quot;&gt;&lt;h1 class=&quot;h1 namne_details&quot; style=&quot;line-height: 7.2px;&quot;&gt;&lt;font style=&quot;line-height: 2.4px; font-size: 8px;&quot;&gt;IRLZ44N&lt;/font&gt;&lt;/h1&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="30" width="60" x="510" y="270" as="geometry" />
         </mxCell>
         <mxCell id="Ny-SFjRtNa3XpVmlHieG-7" edge="1" parent="1" source="vpOEq-jD5VLKR6iy5RVP-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.7182;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" target="tzww6lVccgM1dmjgtHIC-6">
@@ -352,7 +352,7 @@
         <mxCell id="Ny-SFjRtNa3XpVmlHieG-13" parent="1" style="pointerEvents=1;verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.resistors.resistor_2;" value="" vertex="1">
           <mxGeometry height="10" width="40" x="450" y="240" as="geometry" />
         </mxCell>
-        <mxCell id="Ny-SFjRtNa3XpVmlHieG-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div style=&quot;line-height: 30%;&quot;&gt;&lt;h1 class=&quot;h1 namne_details&quot; style=&quot;line-height: 30%;&quot;&gt;&lt;span style=&quot;font-weight: 400; white-space: nowrap;&quot;&gt;&lt;font style=&quot;font-size: 6px;&quot;&gt;10 K-Ohms Resistor&lt;/font&gt;&lt;/span&gt;&lt;/h1&gt;&lt;/div&gt;" vertex="1">
+        <mxCell id="Ny-SFjRtNa3XpVmlHieG-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div style=&quot;line-height: 30%;&quot;&gt;&lt;h1 class=&quot;h1 namne_details&quot; style=&quot;line-height: 30%;&quot;&gt;&lt;br&gt;&lt;/h1&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="30" width="60" x="440" y="240" as="geometry" />
         </mxCell>
         <mxCell id="Ny-SFjRtNa3XpVmlHieG-17" parent="1" style="pointerEvents=1;verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.resistors.resistor_2;rotation=90;" value="" vertex="1">
@@ -449,7 +449,7 @@
             <mxPoint x="679.9677419354839" y="800.8064516129032" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="yxqf2OYLNWTn7_r0pDM6-58" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="&lt;div&gt;LM2596&lt;/div&gt;3.3V Voltage Regulator" vertex="1">
+        <mxCell id="yxqf2OYLNWTn7_r0pDM6-58" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="&lt;div&gt;MP1584&lt;/div&gt;3.3V Voltage Regulator" vertex="1">
           <mxGeometry height="60" width="120" x="650" y="630" as="geometry" />
         </mxCell>
         <mxCell id="yxqf2OYLNWTn7_r0pDM6-59" edge="1" parent="1" source="yxqf2OYLNWTn7_r0pDM6-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;endArrow=none;endFill=0;">
@@ -462,7 +462,7 @@
             <mxPoint x="640" y="940.1428571428571" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="yxqf2OYLNWTn7_r0pDM6-61" parent="1" style="shape=ext;double=1;whiteSpace=wrap;html=1;aspect=fixed;" value="ESP-32D" vertex="1">
+        <mxCell id="yxqf2OYLNWTn7_r0pDM6-61" parent="1" style="shape=ext;double=1;whiteSpace=wrap;html=1;aspect=fixed;" value="ESP32-S3" vertex="1">
           <mxGeometry height="80" width="80" x="510" y="890" as="geometry" />
         </mxCell>
         <mxCell id="yxqf2OYLNWTn7_r0pDM6-62" parent="1" style="pointerEvents=1;verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.capacitors.capacitor_1;" value="&lt;pre dir=&quot;ltr&quot;&gt;&lt;code&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;10 µF Ceramic&lt;/font&gt;&lt;/code&gt;&lt;/pre&gt;" vertex="1">
@@ -568,17 +568,12 @@
         <mxCell id="oqF5pxfGSi2VgIsW6Lq1-1" edge="1" parent="1" source="Z5F_7De1hwaRzkl3mgee-97" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" target="Z5F_7De1hwaRzkl3mgee-117">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="9J27T4eaCTdHt1f53Tx0-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div style=&quot;line-height: 30%;&quot;&gt;&lt;h1 class=&quot;h1 namne_details&quot; style=&quot;line-height: 7.2px;&quot;&gt;&lt;font style=&quot;line-height: 2.4px; font-size: 8px;&quot;&gt;IRLZ440N&lt;/font&gt;&lt;/h1&gt;&lt;/div&gt;" vertex="1">
+        <mxCell id="9J27T4eaCTdHt1f53Tx0-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div style=&quot;line-height: 30%;&quot;&gt;&lt;h1 class=&quot;h1 namne_details&quot; style=&quot;line-height: 7.2px;&quot;&gt;&lt;font style=&quot;line-height: 2.4px; font-size: 8px;&quot;&gt;IRLZ44N&lt;/font&gt;&lt;/h1&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="30" width="60" x="219.97" y="625" as="geometry" />
         </mxCell>
         <mxCell id="tzww6lVccgM1dmjgtHIC-3" edge="1" parent="1" source="tzww6lVccgM1dmjgtHIC-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.7;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=none;endFill=0;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="499.97206703910615" y="350" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="tzww6lVccgM1dmjgtHIC-4" edge="1" parent="1" source="tzww6lVccgM1dmjgtHIC-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.7182;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=none;endFill=0;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="440" y="301.0837988826816" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="tzww6lVccgM1dmjgtHIC-1" parent="1" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.mosfets1.mosfet_ic_n_body_diode;" value="" vertex="1">
@@ -593,7 +588,7 @@
         <mxCell id="tzww6lVccgM1dmjgtHIC-6" parent="1" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.mosfets1.mosfet_ic_n_body_diode;" value="" vertex="1">
           <mxGeometry height="60" width="60" x="382.47" y="276.9" as="geometry" />
         </mxCell>
-        <mxCell id="tzww6lVccgM1dmjgtHIC-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div style=&quot;line-height: 30%;&quot;&gt;&lt;h1 class=&quot;h1 namne_details&quot; style=&quot;line-height: 7.2px;&quot;&gt;&lt;font style=&quot;line-height: 2.4px; font-size: 8px;&quot;&gt;IRLZ440N&lt;/font&gt;&lt;/h1&gt;&lt;/div&gt;" vertex="1">
+        <mxCell id="tzww6lVccgM1dmjgtHIC-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div style=&quot;line-height: 30%;&quot;&gt;&lt;h1 class=&quot;h1 namne_details&quot; style=&quot;line-height: 7.2px;&quot;&gt;&lt;font style=&quot;line-height: 2.4px; font-size: 8px;&quot;&gt;IRLZ44N&lt;/font&gt;&lt;/h1&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="30" width="60" x="342.47" y="270" as="geometry" />
         </mxCell>
         <mxCell id="tzww6lVccgM1dmjgtHIC-9" edge="1" parent="1" source="tzww6lVccgM1dmjgtHIC-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.7;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=none;endFill=0;">
@@ -706,7 +701,7 @@
             <mxPoint x="240" y="752.4" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="51cD0_p0mifoPNt57Hge-43" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;span style=&quot;font-size: 11px;&quot;&gt;1-Relay Module&lt;/span&gt;" vertex="1">
+        <mxCell id="51cD0_p0mifoPNt57Hge-43" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;span style=&quot;font-size:10px&quot;&gt;1-relay&lt;br&gt;module&lt;br&gt;5 V*&lt;/span&gt;" vertex="1">
           <mxGeometry height="50" width="50" x="35" y="727.5" as="geometry" />
         </mxCell>
         <mxCell id="51cD0_p0mifoPNt57Hge-47" edge="1" parent="1" source="51cD0_p0mifoPNt57Hge-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;endArrow=none;endFill=0;" target="51cD0_p0mifoPNt57Hge-43">
@@ -718,6 +713,73 @@
         </mxCell>
         <mxCell id="51cD0_p0mifoPNt57Hge-45" parent="1" style="pointerEvents=1;verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.signal_sources.protective_earth;" value="" vertex="1">
           <mxGeometry height="20" width="25" x="10" y="777.5" as="geometry" />
+        </mxCell>
+        <mxCell id="e8ASnVLXpHY_MQUPTeBu-1" edge="1" parent="1" source="tzww6lVccgM1dmjgtHIC-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.7182;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.01;entryY=0.164;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" target="Ny-SFjRtNa3XpVmlHieG-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="450" y="301.1" />
+              <mxPoint x="450" y="244.9" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8ASnVLXpHY_MQUPTeBu-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;h1 class=&quot;h1 namne_details&quot; style=&quot;line-height: 7.2px;&quot;&gt;&lt;span style=&quot;font-weight: 400; white-space: nowrap;&quot;&gt;&lt;font style=&quot;font-size: 6px;&quot;&gt;10 K-Ohms Resistor&lt;/font&gt;&lt;/span&gt;&lt;/h1&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="440" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="power-critical" value="&lt;b&gt;ITERATION 1 - BENCH CHECK&lt;/b&gt;&lt;br&gt;&lt;br&gt;IRLZ44N switching as drawn is unvalidated: check VGS and D/S orientation under load.&lt;br&gt;&lt;br&gt;High-side source-follower loss + 1N5822 drop may collapse the 5 V rail or put MP1584 VIN below 4.5 V.&lt;br&gt;&lt;br&gt;Added USB / relay power details and remaining checks: tab 2." style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FFF2CC;strokeColor=#D6B656;align=left;verticalAlign=top;spacing=12;fontSize=13;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="610" y="250" width="210" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="relay-power-note" value="*Module voltage provisional.&lt;br&gt;IN driver: Pin Layout tab 2." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontSize=13;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1070" width="310" height="25" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Power additions &amp; review" id="iteration1-power-additions">
+    <mxGraphModel dx="1471" dy="896" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Power additions &amp; first-iteration review" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontSize=13;fontSize=23;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="25" width="790" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="usb" value="J1 programming Micro-USB&lt;br&gt;1 VBUS: NC / insulated&lt;br&gt;2 D- / 3 D+: Pin Layout tab 2&lt;br&gt;4 ID: NC&lt;br&gt;5 GND + shield: board GND" style="rounded=1;arcSize=5;html=1;whiteSpace=wrap;fillColor=#E8F1FA;strokeColor=#1F6FB2;strokeWidth=1.5;fontSize=14;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="35" y="100" width="310" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="power" value="Existing board supply&lt;br&gt;3V3_SYS + GND&lt;br&gt;ESP32-S3, BOOT and EN pull-ups&lt;br&gt;EN RC and buttons: Pin Layout tab 2" style="rounded=1;arcSize=5;html=1;whiteSpace=wrap;fillColor=#E8F1FA;strokeColor=#1F6FB2;strokeWidth=1.5;fontSize=14;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="490" y="100" width="320" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="usb-gnd-ref" edge="1" parent="1" source="usb" target="power" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#1F6FB2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="usb-warning" value="&lt;b&gt;Separate ports:&lt;/b&gt; J1 is for firmware/data. Keep its VBUS disconnected from the charger, battery and existing 5 V Micro-USB power input. Board must be powered separately for programming." style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FFF2CC;strokeColor=#D6B656;align=left;verticalAlign=top;spacing=12;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="35" y="265" width="775" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="relay-rail" value="Existing 5 V load rail*&lt;br&gt;after source selection&lt;br&gt;5V_RELAY + GND" style="rounded=1;arcSize=5;html=1;whiteSpace=wrap;fillColor=#E8F1FA;strokeColor=#1F6FB2;strokeWidth=1.5;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="35" y="370" width="300" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="relay-supply" value="1-relay module, provisional 5 V&lt;br&gt;VCC / GND from existing rail&lt;br&gt;IN driven by NPN: Pin Layout tab 2" style="rounded=1;arcSize=5;html=1;whiteSpace=wrap;fillColor=#E8F1FA;strokeColor=#1F6FB2;strokeWidth=1.5;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="490" y="370" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="relay-power-link" edge="1" parent="1" source="relay-rail" target="relay-supply" style="endArrow=none;html=1;rounded=0;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;endArrow=block;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="relay-decoupling" value="At relay VCC-GND: add 100 nF + 10 µF local decoupling.&lt;br&gt;Keep relay switching-current return away from analog-sensor / ADC return paths.&lt;br&gt;*Measure actual rail under relay load; its 5 V value is not yet validated." style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FFF2CC;strokeColor=#D6B656;align=left;verticalAlign=top;spacing=12;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="35" y="475" width="775" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="check-0" value="&lt;b&gt;1. Power switch headroom - unresolved&lt;/b&gt;&lt;br&gt;N-channel devices used high-side need gate voltage above the source for low resistance. Check the three IRLZ44N stages as drawn. Gate threshold is not full conduction; record gate, source, drain and load voltage on USB and battery power." style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FFF2CC;strokeColor=#D6B656;align=left;verticalAlign=top;spacing=12;fontSize=13;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="35" y="590" width="775" height="83" as="geometry" />
+        </mxCell>
+        <mxCell id="check-1" value="&lt;b&gt;2. 5 V rail and 3.3 V startup&lt;/b&gt;&lt;br&gt;MP1584 specifies VIN &gt;= 4.5 V. Diode and MOSFET losses can violate that limit. Measure switchover, relay steps and Wi-Fi bursts; confirm stable 3.3 V and at least 500 mA supply capability for the ESP32-S3." style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FFF2CC;strokeColor=#D6B656;align=left;verticalAlign=top;spacing=12;fontSize=13;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="35" y="681" width="775" height="83" as="geometry" />
+        </mxCell>
+        <mxCell id="check-2" value="&lt;b&gt;3. Charging and connectors&lt;/b&gt;&lt;br&gt;Confirm the charger actually provides each specified 5 V output concurrently. Check connector / cable current ratings, CN3302 2S charge setting, BMS B+/BM/B-/P terminals and balancing capability. A 65 W label alone does not establish 5 V / 4 A availability." style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FFF2CC;strokeColor=#D6B656;align=left;verticalAlign=top;spacing=12;fontSize=13;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="35" y="772" width="775" height="83" as="geometry" />
+        </mxCell>
+        <mxCell id="check-3" value="&lt;b&gt;4. Bare-chip PCB work still required&lt;/b&gt;&lt;br&gt;These are block / signal diagrams. Confirm exact ESP32-S3 package and add all supply-pin decoupling, exposed-pad GND, required flash, 40 MHz crystal, RF matching / antenna and strap configuration before PCB layout." style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FFF2CC;strokeColor=#D6B656;align=left;verticalAlign=top;spacing=12;fontSize=13;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="35" y="863" width="775" height="83" as="geometry" />
+        </mxCell>
+        <mxCell id="check-4" value="&lt;b&gt;5. Sensor and relay qualification&lt;/b&gt;&lt;br&gt;Verify actual module output voltages and common GND. MQ-7 heater cycling, ADC input range, pH calibration, relay trigger polarity / flyback and contact-load suppression remain bench checks. See the accompanying review notes for details." style="rounded=1;html=1;whiteSpace=wrap;fillColor=#FFF2CC;strokeColor=#D6B656;align=left;verticalAlign=top;spacing=12;fontSize=13;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="35" y="954" width="775" height="83" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
