@@ -1,5 +1,6 @@
-#Backup files
-Documentation/.$Electrical System Diagram.drawio.bkp
+#Documentation files
+Documentation/*.drawio
+Documentation/.*.drawio.bkp
 
 
 # Prerequisites
