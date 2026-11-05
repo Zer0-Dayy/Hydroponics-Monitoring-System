@@ -1,0 +1,4 @@
+(fp_lib_table
+ (version 7)
+ (lib (name "ProjectPCB")(type "KiCad")(uri "${KIPRJMOD}/Project PCB.pretty")(options "")(descr "Project footprints"))
+)

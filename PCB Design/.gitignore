@@ -1,0 +1,30 @@
+# ============================================================
+# KiCad PCB Design
+# ============================================================
+
+# User-specific project settings
+*.kicad_prl
+
+# Automatic backups
+*-backups/
+*-bak
+*.bak
+
+# Autosave and temporary files
+_autosave-*
+*.tmp
+*~
+
+# Lock files
+*.lck
+
+# Legacy KiCad footprint cache
+fp-info-cache
+
+# Editor temporary files
+*.swp
+*.swo
+
+# Operating system metadata
+.DS_Store
+Thumbs.db

@@ -1,0 +1,218 @@
+(footprint "MP1584EN_Module__J12"
+	(version 20260206)
+	(generator "pcbnew")
+	(layer "F.Cu")
+	(descr "MP1584EN 3A buck module (22x17 mm, 8 holes) plugged into 4x 1x02 2.54 mm female headers. CHECK PAD POSITIONS WITH CALIPERS.")
+	(tags "MP1584 buck module DC-DC female header")
+	(property "Reference" "REF**"
+		(at 0 -10.2 -180.0)
+		(layer "F.SilkS")
+		(uuid "dc8650f8-8af4-4a61-a40d-eb930622e778")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "MP1584 3V3"
+		(at 0 10.2 -180.0)
+		(layer "F.Fab")
+		(uuid "7ae8b213-afae-4182-8362-f0be88dd29a5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 -180.0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e6a0d826-fa33-41ca-9959-07800bc553e3")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(at 0 0 -180.0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0702355c-30f6-41ea-9dcc-a6eb2c38b98e")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property ki_fp_filters "Connector*:*_1x??_*")
+	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -11 -8.5)
+		(end 11 8.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "dc0d1806-79b8-43b1-bb39-b096ff82d405")
+	)
+	(fp_rect
+		(start -11.5 -9)
+		(end 11.5 9)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "6f2691ea-a824-4d74-af8c-46befcb55d57")
+	)
+	(fp_rect
+		(start -11 -8.5)
+		(end 11 8.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "00e24309-ee0d-4279-97e2-58b55e2044ea")
+	)
+	(fp_text user "-"
+		(at 7.4 5.93 -180.0)
+		(layer "F.SilkS")
+		(uuid "b124c0d2-52f8-417b-a14c-3621e9efd247")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "+"
+		(at 7.4 -5.93 -180.0)
+		(layer "F.SilkS")
+		(uuid "df29be4f-6f63-44a5-8187-c33c2fb4c48d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "OUT"
+		(at 5 0 -90.0)
+		(layer "F.SilkS")
+		(uuid "9b4cdd52-874a-465f-804e-e7550a80cac2")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "IN"
+		(at -5 0 -90.0)
+		(layer "F.SilkS")
+		(uuid "67a404f2-65db-4550-9aed-13bd13d85a28")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "-"
+		(at -7.4 5.93 -180.0)
+		(layer "F.SilkS")
+		(uuid "b7cd5d8e-f904-4ca1-9890-0be21cd0a046")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "+"
+		(at -7.4 -5.93 -180.0)
+		(layer "F.SilkS")
+		(uuid "b81519fc-24a1-48dd-bd41-3b9af77d46c1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole rect
+		(at -9.7 -7.2 0.0)
+		(size 1.8 1.8)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "712468cd-218e-483f-bfa3-63b1c2a8a6ed")
+	)
+	(pad "1" thru_hole circle
+		(at -9.7 -4.66 0.0)
+		(size 1.8 1.8)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "808a73f0-19eb-4485-876c-e0f6f6bc84c1")
+	)
+	(pad "2" thru_hole circle
+		(at -9.7 4.66 0.0)
+		(size 1.8 1.8)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "70681670-e2b8-45b8-8b17-5bd653d52b1d")
+	)
+	(pad "2" thru_hole circle
+		(at -9.7 7.2 0.0)
+		(size 1.8 1.8)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "9f2f534a-3374-481c-b4f6-d1eb172ac545")
+	)
+	(pad "3" thru_hole circle
+		(at 9.7 -7.2 0.0)
+		(size 1.8 1.8)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "f06eafa7-462c-465c-b32c-7de137c59df8")
+	)
+	(pad "3" thru_hole circle
+		(at 9.7 -4.66 0.0)
+		(size 1.8 1.8)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "d7f23968-8aa9-4ee6-a59f-7b1a6430ee8f")
+	)
+	(pad "4" thru_hole circle
+		(at 9.7 4.66 0.0)
+		(size 1.8 1.8)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "33e426e5-094d-4bce-92a1-45f7b9e9f69d")
+	)
+	(pad "4" thru_hole circle
+		(at 9.7 7.2 0.0)
+		(size 1.8 1.8)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "a404d50a-db4e-4642-abd8-4a482553c699")
+	)
+	(embedded_fonts no)
+)
