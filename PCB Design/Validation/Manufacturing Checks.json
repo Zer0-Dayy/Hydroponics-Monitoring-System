@@ -1,5 +1,5 @@
 {
-  "revision": "1.3",
+  "revision": "1.5",
   "kicad_version": "10.0.8",
   "erc_violations": 0,
   "drc_violations": 0,
@@ -7,10 +7,13 @@
   "schematic_parity_issues": 0,
   "erc_exclusions": 0,
   "drc_exclusions": 0,
-  "component_references": 66,
-  "connectivity_unchanged_from_revision_1_2": true,
-  "outline_and_mounting_holes_unchanged": true,
-  "nominal_board_thickness_mm": 1.5,
+  "schematic_netlist_matches_input_revision": true,
+  "board_outline_and_mounting_holes_unchanged": true,
+  "dimensions_mm": [
+    165.5,
+    90.5
+  ],
+  "board_thickness_mm": 1.5,
   "copper_order_specification_um_per_side": 35,
   "minimum_drill_mm": 0.3,
   "minimum_plated_annular_ring_mm": 0.2,
@@ -20,13 +23,44 @@
     "U1.41"
   ],
   "esp32_thermal_holes": 9,
-  "thermal_hole_drill_mm": 0.3,
-  "thermal_hole_copper_diameter_mm": 0.8,
-  "thermal_hole_grid_pitch_mm": 1.0,
-  "hole_geometry_check": "Round and oval drills checked as circles/capsules, including same-number footprint pads.",
-  "release_limits": [
-    "Exact purchased-part fit is not established by DRC; see assembly notes and sourcing sheet.",
-    "USB differential impedance awaits manufacturer stackup confirmation.",
-    "Electrical bench results relate to the breadboard, not a fabricated revision 1.3 PCB."
-  ]
+  "usb_data_copper_lengths_mm": {
+    "D-": 30.175,
+    "D+": 30.092
+  },
+  "usb_data_copper_length_difference_mm": 0.083,
+  "divider_calculations": {
+    "HC-SR04 ECHO": {
+      "nominal_ratio": 0.6,
+      "worst_case_ratio_low": 0.59519,
+      "worst_case_ratio_high": 0.60479,
+      "nominal_at_5V": 3.0,
+      "minimum_at_4_75V": 2.8272,
+      "maximum_at_5_25V": 3.1751
+    },
+    "GPIO8 RAIL_SENSE": {
+      "nominal_ratio": 0.576271,
+      "worst_case_ratio_low": 0.57138,
+      "worst_case_ratio_high": 0.581147,
+      "nominal_at_5V": 2.8814,
+      "minimum_at_4_75V": 2.7141,
+      "maximum_at_5_25V": 3.051
+    }
+  },
+  "inspiretech_brief": "PCB pricing and capabilities, April 2026, p. 4",
+  "manufacturer_minimum_track_width_mm": 0.2,
+  "minimum_track_width_mm": 0.2,
+  "manufacturer_copper_spacing_mm": 0.2,
+  "copper_spacing_drc_threshold_mm": 0.2,
+  "manufacturer_minimum_drill_mm": 0.2,
+  "manufacturer_minimum_annular_ring_mm": 0.2,
+  "manufacturer_minimum_drill_edge_spacing_mm": 0.5,
+  "manufacturer_maximum_outline_mm": [
+    350,
+    250
+  ],
+  "routed_copper_matches_latest_input": true,
+  "back_ext_5v_trunk_width_mm": 1.0,
+  "back_ext_5v_trunk_length_mm": 74.798,
+  "back_ext_5v_separate_branch_width_mm": 0.2,
+  "back_ext_5v_separate_branch_length_mm": 9.5
 }

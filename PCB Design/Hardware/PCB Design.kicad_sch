@@ -6,8 +6,8 @@
 	(paper "A3")
 	(title_block
 		(title "PCB Design")
-		(date "2026-11-04")
-		(rev "1.3")
+		(date "2026-11-05")
+		(rev "1.5")
 		(company "I-ACT")
 	)
 	(lib_symbols
@@ -5380,7 +5380,7 @@
 						)
 					)
 				)
-				(pin power_out line
+				(pin passive line
 					(at 0 -10.16 90)
 					(length 2.54)
 					(name "GND"
@@ -5863,7 +5863,7 @@
 	)
 	(rectangle
 		(start 287.02 181.61)
-		(end 386.08 199.39)
+		(end 331.47 199.39)
 		(stroke
 			(width 0)
 			(type default)
@@ -5982,6 +5982,18 @@
 		(uuid "76218470-4c64-44e0-955e-7ebc90b026bb")
 	)
 	(rectangle
+		(start 25.4 40.64)
+		(end 66.04 74.93)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "93e35d5a-346c-4207-82ce-8f114818b426")
+	)
+	(rectangle
 		(start 25.4 82.55)
 		(end 66.04 116.84)
 		(stroke
@@ -6083,17 +6095,6 @@
 			)
 		)
 		(uuid "3af8ede5-b1ae-4f0f-b704-93417c7d50c3")
-	)
-	(text "DFR0026"
-		(exclude_from_sim no)
-		(at 349.25 218.44 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "48cc3061-5559-43be-98be-34c9db8eb156")
 	)
 	(text "SGP30 Connector"
 		(exclude_from_sim no)
@@ -6212,7 +6213,7 @@
 		)
 		(uuid "c862809f-15a0-45ce-9b73-7621e04bb019")
 	)
-	(text "USB Connector"
+	(text "USB Data / Flashing"
 		(exclude_from_sim no)
 		(at 25.4 82.55 0)
 		(effects
@@ -6222,6 +6223,23 @@
 			(justify left bottom)
 		)
 		(uuid "efa2bbbe-ff95-4c9c-b4b3-0962fec93741")
+	)
+	(text "5V Adapter Input"
+		(exclude_from_sim no)
+		(at 25.4 40.64 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f6453a18-228f-4c39-b51b-c70d53d1b883")
+	)
+	(junction
+		(at 40.64 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "015dc85b-ee06-4079-b1ea-fbe404fb4385")
 	)
 	(junction
 		(at 248.92 207.01)
@@ -6434,6 +6452,12 @@
 		(uuid "a94bccfa-3410-42d8-8241-f8397cd28788")
 	)
 	(junction
+		(at 43.18 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b08f7501-0076-4c1b-9a12-19692423c2c3")
+	)
+	(junction
 		(at 232.41 106.68)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6524,6 +6548,12 @@
 		(uuid "e81e84c0-80f8-4352-abf8-c3a76c8231d0")
 	)
 	(junction
+		(at 41.91 109.22)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e9fd29a4-cc7d-44ad-9d65-f182e523ff33")
+	)
+	(junction
 		(at 191.77 265.43)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6600,6 +6630,10 @@
 		(uuid "0ace60f7-7eb3-48b5-9ec0-ea2f705fec7a")
 	)
 	(no_connect
+		(at 49.53 93.98)
+		(uuid "166e88b6-719e-4c00-859a-0eff4f812eb7")
+	)
+	(no_connect
 		(at 186.69 96.52)
 		(uuid "171f66ec-cd93-4231-b357-f10bbfbf7c27")
 	)
@@ -6612,7 +6646,7 @@
 		(uuid "370122a2-9db9-45ea-8489-f1d63048e0e0")
 	)
 	(no_connect
-		(at 41.91 104.14)
+		(at 49.53 104.14)
 		(uuid "40e53c9b-5890-41e9-a027-9f2728a0c23d")
 	)
 	(no_connect
@@ -6626,6 +6660,10 @@
 	(no_connect
 		(at 186.69 78.74)
 		(uuid "6156c1a3-45cc-43f9-b897-8fc3e3a46cab")
+	)
+	(no_connect
+		(at 50.8 59.69)
+		(uuid "64210665-e4a1-4de2-94a7-a2477b17e786")
 	)
 	(no_connect
 		(at 217.17 81.28)
@@ -6648,6 +6686,10 @@
 		(uuid "87cdb159-3b7c-4152-b508-4098d1f45dac")
 	)
 	(no_connect
+		(at 50.8 57.15)
+		(uuid "92e55ebc-e69e-429a-bfb2-18c1bdf16452")
+	)
+	(no_connect
 		(at 217.17 104.14)
 		(uuid "a5a16cf0-b0eb-477f-a916-6b08d4ba3b5f")
 	)
@@ -6662,6 +6704,10 @@
 	(no_connect
 		(at 217.17 86.36)
 		(uuid "b25793ba-e84c-4ecb-86a4-4807b6886b50")
+	)
+	(no_connect
+		(at 50.8 62.23)
+		(uuid "d27a2dc2-4685-452e-8229-7e590f3fe741")
 	)
 	(no_connect
 		(at 217.17 83.82)
@@ -6806,6 +6852,16 @@
 			(type default)
 		)
 		(uuid "0adcef5c-32ba-4e1e-bc12-2a44140bb435")
+	)
+	(wire
+		(pts
+			(xy 50.8 52.07) (xy 54.61 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0c0c6887-e399-48c5-b308-09e23cb535f7")
 	)
 	(wire
 		(pts
@@ -8199,16 +8255,6 @@
 	)
 	(wire
 		(pts
-			(xy 41.91 93.98) (xy 48.26 93.98)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a88426f5-03e8-49da-b6c3-721756168e8c")
-	)
-	(wire
-		(pts
 			(xy 104.14 63.5) (xy 109.22 63.5)
 		)
 		(stroke
@@ -8609,7 +8655,7 @@
 	)
 	(wire
 		(pts
-			(xy 31.75 109.22) (xy 34.29 109.22)
+			(xy 39.37 109.22) (xy 41.91 109.22)
 		)
 		(stroke
 			(width 0)
@@ -8676,6 +8722,16 @@
 			(type default)
 		)
 		(uuid "eaa61604-835f-40a5-8f94-7f2fcb82195f")
+	)
+	(wire
+		(pts
+			(xy 35.56 67.31) (xy 40.64 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eaa8d56b-613c-48ff-ab79-b5c79dbee843")
 	)
 	(wire
 		(pts
@@ -8827,6 +8883,16 @@
 		)
 		(uuid "fdd8ccc7-9d2c-4582-a286-fd38579372f6")
 	)
+	(wire
+		(pts
+			(xy 40.64 67.31) (xy 43.18 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fefad01c-ae5b-44db-8a93-72275d697b21")
+	)
 	(global_label "3V3"
 		(shape input)
 		(at 201.93 57.15 90)
@@ -8877,7 +8943,7 @@
 	)
 	(global_label "D-"
 		(shape input)
-		(at 41.91 101.6 0)
+		(at 49.53 101.6 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -8887,7 +8953,7 @@
 		)
 		(uuid "04bc46c6-83b3-47bd-b1e6-486f791754d2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 47.7376 101.6 0)
+			(at 55.3576 101.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8973,7 +9039,7 @@
 	)
 	(global_label "D+"
 		(shape input)
-		(at 41.91 99.06 0)
+		(at 49.53 99.06 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -8983,7 +9049,7 @@
 		)
 		(uuid "1c53583b-8214-424f-8fae-7b824b827473")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 47.7376 99.06 0)
+			(at 55.3576 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9333,7 +9399,7 @@
 	)
 	(global_label "EXT_5V"
 		(shape input)
-		(at 48.26 93.98 0)
+		(at 54.61 52.07 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -9341,9 +9407,9 @@
 			)
 			(justify left)
 		)
-		(uuid "5502de4c-757c-4617-8361-6d8edaa3d394")
+		(uuid "579498ee-715c-4ac1-8e45-7e6bb076aa68")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 58.3209 93.98 0)
+			(at 64.6709 52.07 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11451,7 +11517,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "220"
+		(property "Value" "6.8 K-Ohms"
 			(at 354.33 41.9099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12433,8 +12499,8 @@
 				)
 			)
 		)
-		(property "Value" "10k"
-			(at 339.09 219.202 90)
+		(property "Value" "10 K-Ohms"
+			(at 339.344 219.71 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12753,8 +12819,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "2 k-Ohms"
-			(at 240.792 58.42 0)
+		(property "Value" "15 K-Ohms"
+			(at 242.316 66.294 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13005,7 +13071,7 @@
 				)
 			)
 		)
-		(property "Value" "220"
+		(property "Value" "10 K-Ohms"
 			(at 342.392 34.29 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13147,6 +13213,84 @@
 			(project "PCB Design"
 				(path "/c4632597-d72c-4cc7-89b9-dd331bc423ec"
 					(reference "#PWR033")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Project:GND")
+		(at 43.18 67.31 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6785d1e1-ed20-458e-a149-88e2f64fb72c")
+		(property "Reference" "#PWR010"
+			(at 43.18 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 43.18 72.39 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 43.18 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 43.18 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 43.18 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d2fe878c-1703-44fb-8bef-b16a7c374729")
+		)
+		(instances
+			(project "PCB Design"
+				(path "/c4632597-d72c-4cc7-89b9-dd331bc423ec"
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
@@ -13825,7 +13969,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "220"
+		(property "Value" "6.8 K-Ohms"
 			(at 354.33 50.7999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14376,6 +14520,98 @@
 		)
 	)
 	(symbol
+		(lib_id "Project:USB_B_Micro")
+		(at 43.18 57.15 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "93e6f70f-99a1-435f-b247-7b4b4fb383ff")
+		(property "Reference" "J3"
+			(at 43.18 44.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10104110-0001LF"
+			(at 43.18 46.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "ProjectPCB:USB_Micro-B_Amphenol_10104110_Horizontal"
+			(at 46.99 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 46.99 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "USB Micro Type B connector"
+			(at 43.18 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "3"
+			(uuid "5e17b651-66f6-43b8-82b4-0d4940b44bb5")
+		)
+		(pin "2"
+			(uuid "95c2b93a-c46b-4d86-8ef8-332abe46b806")
+		)
+		(pin "4"
+			(uuid "ba07271f-c1e2-4cbc-b772-6e2cd29ae790")
+		)
+		(pin "1"
+			(uuid "1e3d5a0e-6530-456e-91a2-985a1b34b343")
+		)
+		(pin "5"
+			(uuid "88a504e2-5f16-4e5a-a31f-bb90439196f8")
+		)
+		(pin "6"
+			(uuid "12d255c4-9848-41c5-b18d-51f84304db8b")
+		)
+		(instances
+			(project "PCB Design"
+				(path "/c4632597-d72c-4cc7-89b9-dd331bc423ec"
+					(reference "J3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C_Polarized_Small")
 		(at 227.33 200.66 90)
 		(unit 1)
@@ -14533,7 +14769,7 @@
 	)
 	(symbol
 		(lib_id "Project:USB_B_Micro")
-		(at 34.29 99.06 0)
+		(at 41.91 99.06 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -14544,7 +14780,7 @@
 		(fields_autoplaced yes)
 		(uuid "97405f88-c2ce-4fad-b277-6f277bd8b0d4")
 		(property "Reference" "J1"
-			(at 34.29 86.36 0)
+			(at 41.91 86.36 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -14553,8 +14789,8 @@
 				)
 			)
 		)
-		(property "Value" "USB_B_Micro"
-			(at 34.29 88.9 0)
+		(property "Value" "10104110-0001LF"
+			(at 41.91 88.9 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -14563,8 +14799,8 @@
 				)
 			)
 		)
-		(property "Footprint" "ProjectPCB:USB_Micro-B_Amphenol_10103594-0001LF_Horizontal__J1"
-			(at 38.1 100.33 0)
+		(property "Footprint" "ProjectPCB:USB_Micro-B_Amphenol_10104110_Horizontal"
+			(at 45.72 100.33 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14575,7 +14811,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 38.1 100.33 0)
+			(at 45.72 100.33 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14586,7 +14822,7 @@
 			)
 		)
 		(property "Description" "USB Micro Type B connector"
-			(at 34.29 99.06 0)
+			(at 41.91 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15099,6 +15335,82 @@
 			(project "PCB Design"
 				(path "/c4632597-d72c-4cc7-89b9-dd331bc423ec"
 					(reference "R10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 35.56 67.31 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a7494598-50d3-43c7-a780-17407d9f1343")
+		(property "Reference" "#FLG02"
+			(at 35.56 69.215 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 35.56 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 35.56 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 35.56 67.31 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 35.56 67.31 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "cac4ac81-f1a4-4142-ac58-00cc0259e26a")
+		)
+		(instances
+			(project "PCB Design"
+				(path "/c4632597-d72c-4cc7-89b9-dd331bc423ec"
+					(reference "#FLG02")
 					(unit 1)
 				)
 			)
@@ -16172,7 +16484,7 @@
 	)
 	(symbol
 		(lib_id "Project:GND")
-		(at 34.29 109.22 0)
+		(at 41.91 109.22 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -16183,7 +16495,7 @@
 		(fields_autoplaced yes)
 		(uuid "c77ce813-45d1-4435-be31-89c175483a34")
 		(property "Reference" "#PWR07"
-			(at 34.29 115.57 0)
+			(at 41.91 115.57 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16194,7 +16506,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 34.29 114.3 0)
+			(at 41.91 114.3 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16204,7 +16516,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 34.29 109.22 0)
+			(at 41.91 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16215,7 +16527,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 34.29 109.22 0)
+			(at 41.91 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16226,7 +16538,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 34.29 109.22 0)
+			(at 41.91 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18168,7 +18480,7 @@
 				)
 			)
 		)
-		(property "Value" "1 k-Ohms"
+		(property "Value" "10 K-Ohms"
 			(at 248.92 50.8 90)
 			(show_name no)
 			(do_not_autoplace no)
