@@ -554,7 +554,7 @@
       "netlist": "",
       "plot": "../Fabrication/",
       "specctra_dsn": "",
-      "step": "",
+      "step": "../../../../../../Downloads/PCB Design.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""
