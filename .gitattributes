@@ -1,0 +1,5 @@
+# Shell scripts must keep LF endings on Linux and WSL.
+*.sh text eol=lf
+
+# Preserve the bundled firmware architecture PDFs byte for byte.
+/Firmware/*.pdf binary

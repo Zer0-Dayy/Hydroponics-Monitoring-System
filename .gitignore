@@ -64,9 +64,20 @@ Datasheets/
 
 # Python and PlatformIO work files
 .venv/
+.venv-linux/
 __pycache__/
 *.pyc
+.pytest_cache/
 .pio/
-BluetoothControlApp/build/
-BluetoothControlApp/dist/
-BluetoothControlApp/*.spec
+.vscode/
+/BluetoothControlApp/build/
+/BluetoothControlApp/dist/
+/BluetoothControlApp/*.spec
+
+# Local configuration, logs and data
+.env
+.env.*
+!.env.example
+*.log
+Readings.sqlite3*
+/Firmware/tools/.ble_bench_state.json

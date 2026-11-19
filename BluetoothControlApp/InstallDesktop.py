@@ -1,9 +1,10 @@
-"""Install the packaged Ubuntu app, icon, and launcher for the current user."""
+"""Install the packaged Linux (Ubuntu/GNOME) app, icon, and launcher for the current user."""
 
 import argparse
 import os
 import shutil
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
@@ -37,14 +38,17 @@ def install_file(source: Path, destination: Path, executable: bool = False) -> N
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Install Hydroponics Control for this user")
+    parser = argparse.ArgumentParser(description="Install Hydroponics Control for this user (Linux)")
     parser.parse_args()
+    if not sys.platform.startswith("linux"):
+        parser.error("This installer is for Linux desktops. On Windows, run the built HydroponicsControl.exe "
+                     "(see Readme.md).")
 
     source = Path(__file__).resolve().parent
     executable = source / "dist" / "HydroponicsControl"
-    icon = source / "AppIcon.png"
+    icon = source / "assets" / "AppIcon-256.png"
     if not executable.is_file() or not icon.is_file():
-        parser.error('Build first with: .venv/bin/flet pack Main.py --name HydroponicsControl --icon AppIcon.png --bundle-id com.appveyor.flet --product-name "Hydroponics Control"')
+        parser.error("Build first with: ./build_linux.sh")
 
     data_home = Path(os.environ.get("XDG_DATA_HOME", Path.home() / ".local" / "share"))
     install_dir = data_home / "HydroponicsControl"

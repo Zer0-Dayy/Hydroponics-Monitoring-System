@@ -1,3 +1,10 @@
 flet==1.0.1
+flet-desktop==1.0.1
 bleak==3.0.2
-dbus-fast==5.0.22
+platformdirs==4.13.5
+dbus-fast==5.0.22; sys_platform == "linux"
+# WinRT: removes a pairing left by firmware <= 0.10 (OsBond.py); the same versions bleak 3.0.2 installs on Windows.
+winrt-runtime==4.0.3; sys_platform == "win32"
+winrt-Windows.Devices.Bluetooth==4!10.0.28000.2705; sys_platform == "win32"
+winrt-Windows.Devices.Enumeration==4!10.0.28000.2705; sys_platform == "win32"
+winrt-Windows.Foundation==4!10.0.28000.2705; sys_platform == "win32"

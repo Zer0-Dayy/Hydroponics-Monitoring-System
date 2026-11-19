@@ -1,0 +1,5 @@
+-r Requirements.txt
+pytest
+# Browser preview of the UI (python Main.py --demo --web 8551). flet-web 1.0.1 needs FastAPI < 0.116.
+flet-web==1.0.1
+fastapi<0.116
