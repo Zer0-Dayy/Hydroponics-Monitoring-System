@@ -1,12 +1,14 @@
 (footprint "PinHeader_1x03_P2.54mm_Vertical"
-	(version 20241229)
-	(generator "kicad-footprint-generator")
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
 	(layer "F.Cu")
 	(descr "Through hole straight pin header, 1x03, 2.54mm pitch, single row")
 	(tags "Through hole pin header THT 1x03 2.54mm single row")
 	(property "Reference" "REF**"
 		(at 0 -2.38 0)
 		(layer "F.SilkS")
+		(uuid "abfc8b88-2e5d-45cd-9ee7-95fe1d627fdd")
 		(effects
 			(font
 				(size 1 1)
@@ -17,6 +19,7 @@
 	(property "Value" "PinHeader_1x03_P2.54mm_Vertical"
 		(at 0 7.46 0)
 		(layer "F.Fab")
+		(uuid "d0d7b083-7c6f-4395-a6d5-916f8f5eb0c1")
 		(effects
 			(font
 				(size 1 1)
@@ -24,7 +27,30 @@
 			)
 		)
 	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "aa9c66ed-f4d2-4d2c-b9de-23cc47c2963b")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "691ed618-60b7-49a6-accf-4e906a0cd566")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
 	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
 	(fp_line
 		(start -1.38 -1.38)
 		(end 0 -1.38)
@@ -33,6 +59,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
+		(uuid "cffcff4f-22c6-409f-9ae8-e7f0b4b698ff")
 	)
 	(fp_line
 		(start -1.38 0)
@@ -42,6 +69,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
+		(uuid "af8f57a6-1974-4944-82c7-4d4eed58eab1")
 	)
 	(fp_line
 		(start -1.38 1.27)
@@ -51,6 +79,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
+		(uuid "e2838308-0df9-4516-9bb4-8a56f18a7f65")
 	)
 	(fp_line
 		(start -1.38 1.27)
@@ -60,6 +89,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
+		(uuid "57068ee9-f864-4eb1-a248-2962d4d0e04c")
 	)
 	(fp_line
 		(start -1.38 6.46)
@@ -69,6 +99,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
+		(uuid "e8acc8e0-feb6-4c52-aa83-75198566d12a")
 	)
 	(fp_line
 		(start 1.38 1.27)
@@ -78,6 +109,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
+		(uuid "3919d70c-8d3a-4dca-91cb-f3f517d4554b")
 	)
 	(fp_line
 		(start -1.77 -1.77)
@@ -87,6 +119,7 @@
 			(type solid)
 		)
 		(layer "F.CrtYd")
+		(uuid "63d4a89f-9de6-4197-a428-b2337805e07a")
 	)
 	(fp_line
 		(start -1.77 6.85)
@@ -96,6 +129,7 @@
 			(type solid)
 		)
 		(layer "F.CrtYd")
+		(uuid "089565e7-4f2a-424c-a0f8-4a337e474aad")
 	)
 	(fp_line
 		(start 1.77 -1.77)
@@ -105,6 +139,7 @@
 			(type solid)
 		)
 		(layer "F.CrtYd")
+		(uuid "97335b6a-2cb2-4bf7-99d7-0ec67a0e74b3")
 	)
 	(fp_line
 		(start 1.77 6.85)
@@ -114,6 +149,7 @@
 			(type solid)
 		)
 		(layer "F.CrtYd")
+		(uuid "bb0495d6-feec-4803-b442-40349163a7bd")
 	)
 	(fp_line
 		(start -1.27 -0.635)
@@ -123,6 +159,7 @@
 			(type solid)
 		)
 		(layer "F.Fab")
+		(uuid "9908a9d8-b395-42fe-907b-f0bc1177eed8")
 	)
 	(fp_line
 		(start -1.27 6.35)
@@ -132,6 +169,7 @@
 			(type solid)
 		)
 		(layer "F.Fab")
+		(uuid "3fac382b-51e6-4108-b0ad-f39ed13724c1")
 	)
 	(fp_line
 		(start -0.635 -1.27)
@@ -141,6 +179,7 @@
 			(type solid)
 		)
 		(layer "F.Fab")
+		(uuid "836037a6-7a78-46d1-9669-7b4aec3acf09")
 	)
 	(fp_line
 		(start 1.27 -1.27)
@@ -150,6 +189,7 @@
 			(type solid)
 		)
 		(layer "F.Fab")
+		(uuid "490c68d1-3383-475a-96e2-18dcdcc7e6db")
 	)
 	(fp_line
 		(start 1.27 6.35)
@@ -159,10 +199,12 @@
 			(type solid)
 		)
 		(layer "F.Fab")
+		(uuid "dbdb112f-bd05-44db-b1ba-5cdaedaf7586")
 	)
 	(fp_text user "${REFERENCE}"
 		(at 0 2.54 90)
 		(layer "F.Fab")
+		(uuid "f969acd1-4950-40fd-b739-bff270cee58c")
 		(effects
 			(font
 				(size 1 1)
@@ -176,6 +218,7 @@
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
+		(uuid "6f8e218f-68c3-4757-a83e-71469155175d")
 	)
 	(pad "2" thru_hole circle
 		(at 0 2.54)
@@ -183,6 +226,7 @@
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
+		(uuid "4c4c34da-7242-469e-aba8-cf936ae8cb7e")
 	)
 	(pad "3" thru_hole circle
 		(at 0 5.08)
@@ -190,9 +234,10 @@
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
+		(uuid "b7daded8-4dbf-4652-a9aa-7685daf104f9")
 	)
 	(embedded_fonts no)
-	(model "${KICAD9_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x03_P2.54mm_Vertical.step"
+	(model "${KICAD10_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x03_P2.54mm_Vertical.step"
 		(offset
 			(xyz 0 0 0)
 		)

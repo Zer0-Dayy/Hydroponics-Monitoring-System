@@ -1,17 +1,18 @@
 # Hydroponics Monitoring System · PCB revision 1.8
 
-Start with **Documentation/Port_and_LED_Map.pdf** for the board locations and **Documentation/Assembly_and_Bench_Guide.pdf** for population and first power-up. Use J1 for native USB data and J3 for external 5V. J15 and J16 are the fitted backup headers; keep their breakouts unplugged during normal use. Print **Documentation/USB_Fit_Template_1to1.pdf** at actual size and check both real modules before ordering boards.
+Open **Hardware/PCB Design.kicad_pro** in KiCad 10. The fabrication plots, assembly exports and rule checks were regenerated using **KiCad 10.0.8**. Install the standard KiCad 10 symbol libraries and the optional KiCad 10 3D model library to view the packaged model references.
+ 
+See **Documentation/Port And LED Map.pdf** for the USB, UART and indicator locations. **BOM/Instructions Atelier.md** defines the factory assembly.
 
 ## Manufacturing handoff
 
 | Directory | Contents |
 | --- | --- |
-| Hardware | Editable KiCad project, schematic, board, local symbols, footprints and library tables. Open PCB Design.kicad_pro. The project was exported and checked with KiCad 9.0.2. |
+| Hardware | Editable KiCad project, schematic, board, local symbols, footprints and library tables. Open PCB Design.kicad_pro. |
 | Fabrication | 2-layer Gerbers, both silkscreens, plated and non-plated drill files with G85 slots, Gerber job and IPC-D-356 electrical test netlist. |
-| Assembly | Assembly_BOM.csv gives the factory population status for every schematic item. Placement_Top_SMT.csv is the default SMT pick-and-place file. Positions_All_Design.csv is a coordinate reference including optional items. Sourcing_Notes.csv retains earlier candidate suppliers and adds the Rev 1.8 components. |
-| Documentation | Schematic, 1:1 top assembly and mirrored back markings, copper drawings, physical fit template, locator and four-page assembly/bench guide. |
-| Firmware/Heartbeat | Standalone ESP-IDF C project for the active-high GPIO9 LED. It can replace a test board’s application after the read-only ROM check. |
-| Validation | Native ERC / DRC reports, drill maps and revision comparison with USB geometry, connector isolation and physical test limits. |
+| BOM | Assembly_BOM.csv gives the factory population status for every schematic item. Placement_Top_SMT.csv is the default SMT pick-and-place file. Positions_All_Design.csv is a coordinate reference for all 84 footprints. Sourcing_Notes.csv retains earlier candidate suppliers and adds the Rev 1.8 components. |
+| Documentation | Schematic, 1:1 top assembly and mirrored back markings, front and back copper drawings viewed from above, and the connector and LED map. |
+| Validation | KiCad 10 ERC and DRC reports, drill maps, and regeneration checks for connectivity, geometry and the assembly files. |
 
 **Factory build**. Fit the J15/J16 1×5 female through-hole sockets, the J17 1×4 male header, J18 1×2 header with removable shorting shunt and all five LEDs. Fit both Micro-B receptacles and all three 0Ω links. The front stencil includes these five parts. Solder and inspect all four shell anchors on each receptacle. Leave J9, J10 and J12 empty for the owner’s modules. Supply both silkscreens. Maintain the original 165.5 × 90.5 mm outline, four M3 mounting positions, 1.5 mm FR-4 and 35 µm copper per side. Review plated shell slots and the four new non-plated standoff slots with the fabricator.
 
@@ -41,7 +42,7 @@ J6 accepts battery positive on pin 1 and ground on pin 2. J9 produces BAT_5V. Th
 
 ## Bench evidence
 
-At first power-up, compare external 5V, SYS IN and U1 3.3V against the bench guide. EN should return high after reset. Enter the ROM loader for the read-only MAC test, then load the heartbeat on a test board if desired. A toggling GPIO9 proves the diagnostic task is running. Qualify the sensor channels, UPS handover, USB connection under cable movement and loaded rails on a physical first article.
+At first power-up, measure the rails to ground. D3 indicates EXT_5V, D4 indicates BAT_5V, D5 indicates SYS_IN after the isolation diodes, and D6 indicates the ESP supply at U1. D7 is active high on GPIO9 and requires firmware that toggles that output. EN should return high after reset. Enter the ROM loader for the read-only MAC test, then run a GPIO9 heartbeat application on a test board if desired. A toggling GPIO9 proves the diagnostic task is running. Qualify the sensor channels, UPS handover, USB connection under cable movement and loaded rails on a physical first article.
 
 To repeat the CAD checks from the Hardware directory:
 
