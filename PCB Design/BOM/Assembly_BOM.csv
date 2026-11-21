@@ -1,0 +1,84 @@
+Ref,Quantity,Value,Footprint,Breakout build,Assembly note
+C1,1,1uF,ProjectPCB:C_0402_1005Metric__C1,Fit — SMT,See footprint and sourcing notes.
+C2,1,10uF,ProjectPCB:C_0805_2012Metric__C2,Fit — SMT,See footprint and sourcing notes.
+C3,1,100nF,ProjectPCB:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder__C3,Fit — SMT,See footprint and sourcing notes.
+C4,1,1uF,ProjectPCB:C_0402_1005Metric__C4,Fit — SMT,See footprint and sourcing notes.
+C7,1,10nF,ProjectPCB:C_0805_2012Metric__C7,Fit — SMT,See footprint and sourcing notes.
+C8,1,470uF,ProjectPCB:CP_Radial_D5.0mm_P2.00mm__C8,Fit — hand assembly,"470uF radial; 5 mm diameter, 2 mm lead pitch. Verify voltage rating and body fit against board before assembly."
+C9,1,10uF,ProjectPCB:C_0805_2012Metric__C9,Fit — SMT,See footprint and sourcing notes.
+C10,1,100nF,ProjectPCB:C_0805_2012Metric__C10,Fit — SMT,See footprint and sourcing notes.
+C11,1,100nF,ProjectPCB:C_0805_2012Metric__C11,Fit — SMT,See footprint and sourcing notes.
+C12,1,100nF,ProjectPCB:C_0805_2012Metric__C12,Fit — SMT,See footprint and sourcing notes.
+C13,1,100nF,ProjectPCB:C_0805_2012Metric__C13,Fit — SMT,See footprint and sourcing notes.
+C14,1,100nF,ProjectPCB:C_0805_2012Metric__C14,Fit — SMT,See footprint and sourcing notes.
+C15,1,1uF,ProjectPCB:C_0402_1005Metric__C15,Fit — SMT,See footprint and sourcing notes.
+C16,1,470uF,ProjectPCB:CP_Radial_D5.0mm_P2.00mm__C16,Fit — hand assembly,"470uF radial; 5 mm diameter, 2 mm lead pitch. Verify voltage rating and body fit against board before assembly."
+C17,1,10uF,ProjectPCB:C_0805_2012Metric__C17,Fit — SMT,See footprint and sourcing notes.
+C18,1,100nF,ProjectPCB:C_0805_2012Metric__C18,Fit — SMT,See footprint and sourcing notes.
+C19,1,470uF,ProjectPCB:CP_Radial_D5.0mm_P2.00mm__C19,Fit — hand assembly,"470uF radial; 5 mm diameter, 2 mm lead pitch. Verify voltage rating and body fit against board before assembly."
+C20,1,10uF,ProjectPCB:C_0805_2012Metric__C20,Fit — SMT,See footprint and sourcing notes.
+C21,1,100nF,ProjectPCB:C_0805_2012Metric__C21,Fit — SMT,See footprint and sourcing notes.
+C22,1,100nF,ProjectPCB:C_0805_2012Metric__C22,Fit — SMT,See footprint and sourcing notes.
+C23,1,1uF,ProjectPCB:C_0402_1005Metric__C23,Fit — SMT,See footprint and sourcing notes.
+C24,1,10uF,ProjectPCB:C_0805_2012Metric__C24,Fit — SMT,See footprint and sourcing notes.
+D1,1,1N5822,ProjectPCB:D_DO-201AD_P15.24mm_Horizontal__D1,Fit — hand assembly,See footprint and sourcing notes.
+D2,1,1N5822,ProjectPCB:D_DO-201AD_P15.24mm_Horizontal__D2,Fit — hand assembly,See footprint and sourcing notes.
+D3,1,Orange,ProjectPCB:LED_1206_3216Metric,Fit — SMT,"1206 LED, pad 1 cathode. Low-current indicator; select green with Vf at most 2.3V near 1mA for D7."
+D4,1,Orange,ProjectPCB:LED_1206_3216Metric,Fit — SMT,"1206 LED, pad 1 cathode. Low-current indicator; select green with Vf at most 2.3V near 1mA for D7."
+D5,1,Red,ProjectPCB:LED_1206_3216Metric,Fit — SMT,"1206 LED, pad 1 cathode. Low-current indicator; select green with Vf at most 2.3V near 1mA for D7."
+D6,1,Red,ProjectPCB:LED_1206_3216Metric,Fit — SMT,"1206 LED, pad 1 cathode. Low-current indicator; select green with Vf at most 2.3V near 1mA for D7."
+D7,1,Green,ProjectPCB:LED_1206_3216Metric,Fit — SMT,"1206 LED, pad 1 cathode. Low-current indicator; select green with Vf at most 2.3V near 1mA for D7."
+F1,1,Fuse,ProjectPCB:Fuse_Littelfuse_395Series__F1,Fit — hand assembly,See footprint and sourcing notes.
+J1,1,10118194-0001LF,ProjectPCB:USB_Micro-B_Amphenol_10118194-0001LF_Horizontal,Fit — SMT,Primary USB data; Amphenol 10118194-0001LF or verified match. Solder all 4 anchors.
+J2,1,BME280,"ProjectPCB:TerminalBlock_Phoenix_MKDS-1,5-4-5.08_1x04_P5.08mm_Horizontal__J2",Fit — hand assembly,See footprint and sourcing notes.
+J3,1,10118194-0001LF,ProjectPCB:USB_Micro-B_Amphenol_10118194-0001LF_Horizontal,Fit — SMT,Primary 5V input; Amphenol 10118194-0001LF or verified match. Solder all 4 anchors.
+J4,1,DS18B20,"ProjectPCB:TerminalBlock_Phoenix_MKDS-1,5-3-5.08_1x03_P5.08mm_Horizontal__J4",Fit — hand assembly,See footprint and sourcing notes.
+J5,1,SEN0244,"ProjectPCB:TerminalBlock_Phoenix_MKDS-1,5-3-5.08_1x03_P5.08mm_Horizontal__J5",Fit — hand assembly,See footprint and sourcing notes.
+J6,1,Battery Power,"ProjectPCB:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal__J6",Fit — hand assembly,See footprint and sourcing notes.
+J7,1,HC-SR04,"ProjectPCB:TerminalBlock_Phoenix_MKDS-1,5-4-5.08_1x04_P5.08mm_Horizontal__J7",Fit — hand assembly,See footprint and sourcing notes.
+J8,1,DFR0026,"ProjectPCB:TerminalBlock_Phoenix_MKDS-1,5-3-5.08_1x03_P5.08mm_Horizontal__J8",Fit — hand assembly,See footprint and sourcing notes.
+J9,1,MP1584 5V_Battery,ProjectPCB:MP1584EN_Module__J9,Owner installs,"Leave module and holes free for owner. Check pin labels, orientation and regulator setting before installing."
+J10,1,MRB045,ProjectPCB:Charger_3S_TypeC_MRB045__J10,Owner installs,"Leave module and holes free for owner. Check pin labels, orientation and regulator setting before installing."
+J11,1,SGP30,"ProjectPCB:TerminalBlock_Phoenix_MKDS-1,5-4-5.08_1x04_P5.08mm_Horizontal__J11",Fit — hand assembly,See footprint and sourcing notes.
+J12,1,MP1584 3V3,ProjectPCB:MP1584EN_Module__J12,Owner installs,"Leave module and holes free for owner. Check pin labels, orientation and regulator setting before installing."
+J13,1,Relay,"ProjectPCB:TerminalBlock_Phoenix_MKDS-1,5-3-5.08_1x03_P5.08mm_Horizontal__J13",Fit — hand assembly,See footprint and sourcing notes.
+J14,1,pH-4502C,"ProjectPCB:TerminalBlock_Phoenix_MKDS-1,5-4-5.08_1x04_P5.08mm_Horizontal__J14",Fit — hand assembly,See footprint and sourcing notes.
+J15,1,USB DATA,ProjectPCB:USB_Breakout_1x05_M2,Fit — hand assembly,"Straight 1x5 female socket, 2.54 mm, for 0.64 mm square posts; 1.0 mm finished holes. For J16 select contacts rated at least 1.5A."
+J16,1,5V INPUT,ProjectPCB:USB_Breakout_1x05_M2,Fit — hand assembly,"Straight 1x5 female socket, 2.54 mm, for 0.64 mm square posts; 1.0 mm finished holes. For J16 select contacts rated at least 1.5A."
+J17,1,UART0,ProjectPCB:PinHeader_1x04_P2.54mm_Vertical,Fit — hand assembly,"Straight 1x4 breakaway male header, 2.54 mm; pin 1 GND, pin 2 PCB TX, pin 3 PCB RX, pin 4 ESP_3V3."
+J18,1,NORMAL POWER,ProjectPCB:PinHeader_1x02_P2.54mm_Vertical,Fit — hand assembly,1x2 male 2.54 mm header plus removable shunt rated at least 1A. Ship closed.
+Q1,1,IRLZ44N,ProjectPCB:TO-220-3_Vertical__Q1,Fit — hand assembly,See footprint and sourcing notes.
+Q2,1,IRLZ44N,ProjectPCB:TO-220-3_Vertical__Q2,Fit — hand assembly,See footprint and sourcing notes.
+R1,1,10 K-Ohms,ProjectPCB:R_0603_1608Metric__R1,Fit — SMT,See footprint and sourcing notes.
+R2,1,10 K-Ohms,ProjectPCB:R_0603_1608Metric__R2,Fit — SMT,See footprint and sourcing notes.
+R3,1,22,ProjectPCB:R_0603_1608Metric__R3,Fit — SMT,See footprint and sourcing notes.
+R4,1,22,ProjectPCB:R_0603_1608Metric__R4,Fit — SMT,See footprint and sourcing notes.
+R5,1,10 K-Ohms,ProjectPCB:R_0603_1608Metric__R5,Fit — SMT,See footprint and sourcing notes.
+R6,1,4.7 k-Ohms,ProjectPCB:R_0603_1608Metric__R6,Fit — SMT,See footprint and sourcing notes.
+R7,1,4.7 k-Ohms,ProjectPCB:R_0603_1608Metric__R7,Fit — SMT,See footprint and sourcing notes.
+R8,1,4.7 K-Ohms,ProjectPCB:R_0603_1608Metric__R8,Fit — SMT,See footprint and sourcing notes.
+R9,1,15k,ProjectPCB:R_0603_1608Metric__R9,Fit — SMT,See footprint and sourcing notes.
+R10,1,10k,ProjectPCB:R_0603_1608Metric__R10,Fit — SMT,See footprint and sourcing notes.
+R11,1,6.8 K-Ohms,ProjectPCB:R_0603_1608Metric__R11,Fit — SMT,1% divider resistor.
+R12,1,6.8 K-Ohms,ProjectPCB:R_0603_1608Metric__R12,Fit — SMT,1% divider resistor.
+R13,1,10 K-Ohms,ProjectPCB:R_0603_1608Metric__R13,Fit — SMT,1% divider resistor.
+R14,1,15 K-Ohms,ProjectPCB:R_0603_1608Metric__R14,Fit — SMT,1% divider resistor.
+R15,1,10 K-Ohms,ProjectPCB:R_0603_1608Metric__R15,Fit — SMT,1% divider resistor.
+R16,1,1 K-Ohms,ProjectPCB:R_1206_3216Metric__R16,Fit — SMT,"1k ohm 1206, at least 0.25W."
+R17,1,100 K-Ohms,ProjectPCB:R_0603_1608Metric__R17,Fit — SMT,See footprint and sourcing notes.
+R18,1,10 K-Ohms,ProjectPCB:R_0603_1608Metric__R18,Fit — SMT,See footprint and sourcing notes.
+R19,1,220 Ohms,ProjectPCB:R_0603_1608Metric__R19,Fit — SMT,See footprint and sourcing notes.
+R20,1,2.2k,ProjectPCB:R_1206_3216Metric,Fit — SMT,"1206, 1% or 5%, 0.125W or greater."
+R21,1,2.2k,ProjectPCB:R_1206_3216Metric,Fit — SMT,"1206, 1% or 5%, 0.125W or greater."
+R22,1,2.2k,ProjectPCB:R_1206_3216Metric,Fit — SMT,"1206, 1% or 5%, 0.125W or greater."
+R23,1,1k,ProjectPCB:R_1206_3216Metric,Fit — SMT,"1206, 1% or 5%, 0.125W or greater."
+R24,1,1k,ProjectPCB:R_1206_3216Metric,Fit — SMT,"1206, 1% or 5%, 0.125W or greater."
+R25,1,0R,ProjectPCB:R_0603_1608Metric,Fit — SMT,"0Ω 0603, J1 D−; remove with R26 for J15 recovery."
+R26,1,0R,ProjectPCB:R_0603_1608Metric,Fit — SMT,"0Ω 0603, J1 D+; remove with R25 for J15 recovery."
+R27,1,0R,ProjectPCB:R_1206_3216Metric_HandLink,Fit — SMT,0Ω 1206 rated ≥1.5A; remove for J16 recovery.
+SW1,1,RST,ProjectPCB:SW_PUSH_6mm_H7.3mm__SW1,Fit — hand assembly,See footprint and sourcing notes.
+SW2,1,BOOT,ProjectPCB:SW_PUSH_6mm_H7.3mm__SW2,Fit — hand assembly,See footprint and sourcing notes.
+U1,1,ESP32-S3-WROOM-1,ProjectPCB:ESP32-S3-WROOM-1__U1,Fit — SMT,ESP32-S3-WROOM-1-N16R8; confirm full suffix on the module.
+USB modules,2,Micro-B breakout with 5 accessible pins,Photo pattern,Service spares,Keep unplugged until recovery; match VBUS / D− / D+ / ID / GND.
+Module posts,2,"1x5 male, 2.54 mm",Through breakout,Owner installs,Straight 0.64 mm square. A 1x3 and 1x2 may be placed flush if the 2.54 mm pitch is continuous.
+Mounting hardware,4,M2 insulating fixings and spacers,Breakout mounting,Owner installs,Match spacer height to the fully seated socket and module. Alternatively restrain module at enclosure.

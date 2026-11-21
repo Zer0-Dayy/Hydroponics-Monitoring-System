@@ -1,113 +1,55 @@
-# Hydroponics controller PCB
+# Hydroponics Monitoring System · PCB revision 1.8
 
-Revision 1.5 is a two-layer, 165.5 × 90.5 mm controller board for the
-ESP32-S3-WROOM-1-N16R8. It brings the seven sensor interfaces, native USB,
-a grow-lamp relay header, and the external and battery power paths onto
-one board. The manufacturing record specifies a 1.5 mm board with 35 µm
-copper per side. [Manufacturing checks](Validation/Manufacturing%20Checks.json)
+Start with **Documentation/Port_and_LED_Map.pdf** for the board locations and **Documentation/Assembly_and_Bench_Guide.pdf** for population and first power-up. Use J1 for native USB data and J3 for external 5V. J15 and J16 are the fitted backup headers; keep their breakouts unplugged during normal use. Print **Documentation/USB_Fit_Template_1to1.pdf** at actual size and check both real modules before ordering boards.
 
-![Rev 1.5 top assembly drawing with connector and module designators](Documentation/Assembly%20Preview.png)
+## Manufacturing handoff
 
-## Open and review the design
-
-Open [PCB Design.kicad_pro](Hardware/PCB%20Design.kicad_pro) in KiCad 10
-with the standard symbol libraries available. Keep the whole `Hardware/`
-directory together so the project symbol and footprint tables can resolve
-their local libraries.
-
-| File or directory | What to use it for |
+| Directory | Contents |
 | --- | --- |
-| [Schematic](Hardware/PCB%20Design.kicad_sch) and [schematic PDF](Documentation/PCB%20Design.pdf) | Check net labels, connector pin numbers, dividers, and power paths. |
-| [PCB layout](Hardware/PCB%20Design.kicad_pcb) | Review placement, routing, clearances, and the board outline. |
-| [Fabrication](Fabrication/) | Top and bottom Gerbers, edge cuts, separate plated and non-plated drill files, and the IPC-D-356 netlist. Includes top SMT and all-footprint placement CSVs. |
-| [BOM](BOM/) | The KiCad export records values and footprints. The component sourcing sheet lists candidate parts and open fit checks. |
-| [Assembly drawings and previews](Documentation/) | Orient the board, identify component locations, and check the back markings. |
-| [Validation](Validation/) | Recorded ERC/DRC and manufacturing checks, plus plated and non-plated drill maps. |
+| Hardware | Editable KiCad project, schematic, board, local symbols, footprints and library tables. Open PCB Design.kicad_pro. The project was exported and checked with KiCad 9.0.2. |
+| Fabrication | 2-layer Gerbers, both silkscreens, plated and non-plated drill files with G85 slots, Gerber job and IPC-D-356 electrical test netlist. |
+| Assembly | Assembly_BOM.csv gives the factory population status for every schematic item. Placement_Top_SMT.csv is the default SMT pick-and-place file. Positions_All_Design.csv is a coordinate reference including optional items. Sourcing_Notes.csv retains earlier candidate suppliers and adds the Rev 1.8 components. |
+| Documentation | Schematic, 1:1 top assembly and mirrored back markings, copper drawings, physical fit template, locator and four-page assembly/bench guide. |
+| Firmware/Heartbeat | Standalone ESP-IDF C project for the active-high GPIO9 LED. It can replace a test board’s application after the read-only ROM check. |
+| Validation | Native ERC / DRC reports, drill maps and revision comparison with USB geometry, connector isolation and physical test limits. |
 
-## Rev 1.5 connections
+**Factory build**. Fit the J15/J16 1×5 female through-hole sockets, the J17 1×4 male header, J18 1×2 header with removable shorting shunt and all five LEDs. Fit both Micro-B receptacles and all three 0Ω links. The front stencil includes these five parts. Solder and inspect all four shell anchors on each receptacle. Leave J9, J10 and J12 empty for the owner’s modules. Supply both silkscreens. Maintain the original 165.5 × 90.5 mm outline, four M3 mounting positions, 1.5 mm FR-4 and 35 µm copper per side. Review plated shell slots and the four new non-plated standoff slots with the fabricator.
 
-Read the pin numbers from the schematic and match them to the connector
-orientation on the assembly drawing. The GPIO column uses ESP32-S3 signal
-numbers.
+## USB service options
 
-| Connector | Board pins in order | ESP32-S3 signals |
+| Function | Plug-in breakout | Factory-installed primary | If a port is damaged |
+| --- | --- | --- | --- |
+| Native data | J15. Pin 2 D−, pin 3 D+, pin 5 GND. Pins 1 and 4 isolated. | Fit a mechanically matched J1 and both 0Ω links R25/R26. | Disconnect power. Remove both links to isolate the direct D lines. Inspect the footprint for shorts to power or ground before installing a supported J15 breakout. |
+| External 5V | J16. Pin 1 VBUS and pin 5 GND. Pins 2–4 isolated. | Fit a mechanically matched J3 and R27. Use a jumper rated ≥1.5A. | Disconnect power. Remove R27 to isolate J3 VBUS. Inspect for shorts and supply 5V through J16. |
+| ROM recovery | J17. Pin 1 GND, pin 2 PCB TX, pin 3 PCB RX, pin 4 ESP_3V3. | 3.3V USB-to-UART adapter with crossed TX/RX and either board power (J18 closed, pin 4 free) or ESP-only power (J18 open). | The ROM can return its MAC address over UART even when the native USB path is unusable. |
+
+Use a single host for native data and a single source for EXT_5V. With power off, desolder the indicated 0Ω component(s) and leave their copper pads intact. Verify isolation before attaching the replacement breakout. The J15 carrier and J1 occupy a common plug-access area. For a different carrier shape, secure the carrier to the enclosure and use a short pin-mapped harness. The unknown generic loose receptacle has no verified land pattern. Check the proposed part against the Amphenol footprint before assembly; flag a mismatch before fitting a substitute.
+
+## Field connector pinout
+
+| Ref | Terminals in numerical order | ESP32-S3 signal |
 | --- | --- | --- |
-| J2 · BME280 | 1 SDA, 2 SCL, 3 GND, 4 3V3 | GPIO21 SDA, GPIO47 SCL |
-| J11 · SGP30 | 1 SDA, 2 SCL, 3 GND, 4 3V3 | Same I²C bus as J2 |
-| J4 · DS18B20 | 1 GND, 2 3V3, 3 DQ | GPIO14 |
-| J8 · DFR0026 | 1 signal, 2 3V3, 3 GND | GPIO1 |
-| J7 · HC-SR04 | 1 EXT_5V, 2 TRIG, 3 ECHO, 4 GND | GPIO17 TRIG, GPIO18 ECHO through the on-board divider |
-| J5 · SEN0244 | 1 GND, 2 EXT_5V, 3 AOUT | GPIO6 |
-| J14 · pH-4502C | 1 EXT_5V, 2 GND, 3 GND, 4 PO | GPIO7 through the on-board divider |
-| J13 · Relay interface | 1 EXT_5V, 2 RelayIN, 3 GND | GPIO15, active high in the firmware |
+| J2 · BME280 and J11 · SGP30 | SDA, SCL, GND, 3.3V | GPIO21 SDA, GPIO47 SCL |
+| J4 · DS18B20 | GND, 3.3V, DQ | GPIO14 |
+| J5 · SEN0244 | GND, EXT_5V, AOUT | GPIO6 |
+| J7 · HC-SR04 | EXT_5V, TRIG, ECHO, GND | GPIO17 trigger, GPIO18 divided echo |
+| J8 · DFR0026 | Signal, 3.3V, GND | GPIO1 |
+| J13 · Relay | EXT_5V, relay control, GND | GPIO15 |
+| J14 · pH-4502C | EXT_5V, GND, GND, PO | GPIO7 through divider |
 
-J5 pin 2 is connected to `EXT_5V`. The schematic symbol still labels that
-pin `3V3`. At J13, `RelayIN` connects directly to the 3.3 V GPIO15 signal.
-Select and verify a compatible relay interface before connecting a load.
-The earlier pin drawing shows a different relay drive circuit.
-[Rev 1.5 schematic](Documentation/PCB%20Design.pdf) · [October pin layout](../Documentation/Pin%20Layout.pdf)
+J6 accepts battery positive on pin 1 and ground on pin 2. J9 produces BAT_5V. The common diode cathodes feed J12 at SYS_IN. External-rail sensing remains on GPIO8 through 10kΩ over 13.6kΩ. J5 pin 2 now reads EXT_5V in its schematic symbol. Its electrical connection is the same as Rev 1.5.
 
-## Power and programming
+## Bench evidence
 
-- **J1 USB DATA** routes D− and D+ to the ESP32-S3 native USB pins (GPIO19
-  and GPIO20). Its VBUS is unconnected. Use **J3 5V IN** for the external
-  operating supply when programming the PCB on the bench.
-- **J6** is the battery connection. The battery load path passes through F1
-  and the 5 V regulator module at **J9**. **J10** is the footprint for the
-  separate 3S charger module. The two source paths feed the **J12** 3.3 V
-  regulator for the controller and retained sensors.
-- **EXT_5V** supplies J5, J7, J13, and J14 directly on this revision. The
-  ESP32-S3 senses the external rail on GPIO8. The routed divider uses R13
-  (10 kΩ) above R11 and R12 (6.8 kΩ each, in series), about 2.88 V nominal
-  at a 5.00 V input. The HC-SR04 ECHO divider uses R15 (10 kΩ) and R14 (15 kΩ).
+At first power-up, compare external 5V, SYS IN and U1 3.3V against the bench guide. EN should return high after reset. Enter the ROM loader for the read-only MAC test, then load the heartbeat on a test board if desired. A toggling GPIO9 proves the diagnostic task is running. Qualify the sensor channels, UPS handover, USB connection under cable movement and loaded rails on a physical first article.
 
-For component references and placement, use the Rev 1.5 schematic. The
-October pinout and the original firmware bench notes show earlier divider
-or relay configurations. The electrical design and load estimates are in
-the [power circuit diagram](../Documentation/Power%20Circuit%20Diagram.pdf)
-and [power tree](../Documentation/Power%20Tree%20Analysis.pdf).
-
-## Fabrication and assembly review
-
-1. Run the schematic electrical rules check (ERC) and the board design
-   rules check (DRC) with schematic parity. Rev 1.5 records zero violations,
-   unconnected items, and parity issues in KiCad 10.0.8. If KiCad reports
-   missing `Device`, `Mechanical`, or `power` symbols, initialize the standard
-   symbol library table and rerun the checks.
-   [Recorded checks](Validation/Manufacturing%20Checks.json)
-2. Preview the Gerbers and both drill files together in a Gerber viewer.
-   Compare the outline, layer alignment, mounting holes, and the plated and
-   non-plated drill maps. Confirm the fabricator can meet the stackup and
-   geometry in the manufacturing record.
-3. For assembly, match references in the KiCad BOM to the top SMT placement
-   file and the assembly drawing. Check connector fit, polarity, and module
-   orientation against the schematic and actual parts. Verify the **N16R8**
-   suffix on U1 to match the firmware's 16 MB flash and 8 MB PSRAM. Check the
-   Micro-B connector shell pads and the 470 µF capacitor body and lead spacing.
-   [Component sourcing notes](BOM/PCB%20Components.csv) · [Assembly drawing](Documentation/Assembly%201%20To%201.pdf)
-
-Run the following from the repository root on Linux to save check reports outside the checkout.
+To repeat the CAD checks from the Hardware directory:
 
 ```sh
-reports="$(mktemp -d)"
-kicad-cli sch erc --exit-code-violations --format json -o "$reports/erc.json" "PCB Design/Hardware/PCB Design.kicad_sch"
-kicad-cli pcb drc --schematic-parity --exit-code-violations --format json -o "$reports/drc.json" "PCB Design/Hardware/PCB Design.kicad_pcb"
+kicad-cli sch erc --exit-code-violations -o erc.rpt 'PCB Design.kicad_sch'
+kicad-cli pcb drc --all-track-errors --schematic-parity --exit-code-violations -o drc.rpt 'PCB Design.kicad_pcb'
 ```
 
-## First bench session
+## ESP-only programming
 
-1. Compare the assembled board with the schematic and assembly drawing.
-   Verify the power modules, polarity, and rail continuity before
-   connecting sensors, a battery, or a relay load.
-2. Start with external 5 V and check the retained 3.3 V rail. Use J1 and a
-   USB data cable for upload. Bring up the BME280 first, then add the
-   remaining sensor branches and verify their supply and readings.
-   [Firmware bench bring-up](../Firmware/README.md#bench-bring-up)
-3. Qualify GPIO8 and the two rails under load across external-power loss
-   and return before enabling firmware power handover. Verify the relay
-   interface separately with a low-voltage test load.
-   [External-power bench notes](../Firmware/docs/bench-notes.md#external-power-sense-bring-up-test_power_sense-wp9-gate)
-
-The KiCad reports establish design-rule and connectivity results. Loaded
-power transfer, module compatibility, and assembled-board behavior need
-measurements on the actual hardware.
+With all power off, remove the J18 shunt and disconnect external 5V, battery, charger and sensor/relay cables. Feed regulated 3.3V rated for at least 500mA into J17 pin 4 with common ground on pin 1. Use 3.3V UART logic. Use a separate 3.3V supply if the adapter cannot supply that current. After flashing, disconnect programmer power before reinstalling the J18 shunt for normal operation. D6 indicates the local ESP rail. Before plugging in sensors, verify that J12 OUT+ and J2 pin 4 remain near 0V in this mode. Peripheral GPIOs can feed unpowered devices through their protection diodes.

@@ -213,12 +213,12 @@
         }
       ],
       "track_widths": [
-        0,
+        0.0,
         0.2,
         0.25,
         0.4,
         0.6,
-        1,
+        1.0,
         1.5
       ],
       "tuning_pattern_settings": {
@@ -266,7 +266,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": "1.5"
+      "sch_revision": "1.8"
     },
     "layer_pairs": [],
     "layer_presets": [],
@@ -550,11 +550,14 @@
   },
   "pcbnew": {
     "last_paths": {
+      "gencad": "",
       "idf": "",
       "netlist": "",
       "plot": "../Fabrication/",
+      "pos_files": "",
       "specctra_dsn": "",
       "step": "../../../../../../Downloads/PCB Design.step",
+      "svg": "",
       "vrml": ""
     },
     "page_layout_descr_file": ""

@@ -1,0 +1,99 @@
+{
+  "revision": "1.8",
+  "checked_with": "KiCad 9.0.2",
+  "erc_violations": 0,
+  "drc_violations": 0,
+  "unconnected_items": 0,
+  "schematic_parity_issues": 0,
+  "drc_exclusions": [],
+  "erc_exclusions": [],
+  "footprints": 84,
+  "board_dimensions_mm": [
+    165.5,
+    90.5
+  ],
+  "construction": "2 layers, 1.5 mm FR-4, 35 µm copper per side",
+  "rules_mm": {
+    "min_clearance": 0.2,
+    "min_track_width": 0.2,
+    "min_hole_to_hole": 0.5,
+    "min_via_annular_width": 0.2,
+    "min_through_hole_diameter": 0.3,
+    "min_copper_edge_clearance": 0.5
+  },
+  "renamed_existing_nets": {
+    "Net-(D1-K)": "SYS_IN",
+    "Net-(J9-OUT+)": "BAT_5V"
+  },
+  "data_paths_checked": [
+    "J15.2–R3.1 / R3.2–U1.13",
+    "J15.3–R4.1 / R4.2–U1.14",
+    "J1 primary via fitted R25/R26"
+  ],
+  "default_assembly": {
+    "DNP": [],
+    "owner_installs": [
+      "J9",
+      "J10",
+      "J12"
+    ],
+    "SMT_placements": 54,
+    "DNP_paste_apertures": 0,
+    "primary_USB_parts_fitted": [
+      "J1",
+      "J3",
+      "R25",
+      "R26",
+      "R27"
+    ],
+    "backup_headers_fitted": [
+      "J15",
+      "J16"
+    ]
+  },
+  "drill_exports": {
+    "plated_shell_slots": 8,
+    "nonplated_M2_slots": 4,
+    "minimum_round_drill_mm": 0.3
+  },
+  "USB_trace_lengths_excluding_components_and_carrier": {
+    "D-": {
+      "to_J15_mm": 22.362,
+      "to_J1_via_links_mm": 29.495
+    },
+    "D+": {
+      "to_J15_mm": 22.175,
+      "to_J1_via_links_mm": 28.525
+    }
+  },
+  "USB_main_section": {
+    "length_mm": 13.92,
+    "width_mm": 0.66,
+    "gap_mm": 0.24,
+    "back_ground_sample_hits": 1395,
+    "back_ground_samples": 1395,
+    "front_ground_nominal_clearance_mm": 0.25,
+    "nominal_differential_impedance_estimate_ohms": 89.7,
+    "estimate_basis": "Ideal straight, ground-backed coplanar pair; 2D odd-mode finite difference, 0.015 mm mesh, 1.41 mm dielectric, relative permittivity 4.5, 35 um copper, air above. Excludes solder mask, etch tolerance, pads, transitions and plug-in module. Not measured."
+  },
+  "physical_acceptance_pending": [
+    "Actual breakout body, posts, standoffs and enclosure fit",
+    "Direct Micro-B supplier sample fit, including all four plated shell anchors",
+    "Fabricator stackup and slot capability",
+    "First-article USB enumeration and mechanical retention",
+    "Power transfer and transients under the intended load",
+    "Heartbeat target build, flash and bench test"
+  ],
+  "ESP_power_rail_pads": [
+    "C10.1",
+    "C9.1",
+    "J17.4",
+    "J18.2",
+    "R1.1",
+    "R2.1",
+    "R23.1",
+    "U1.2"
+  ],
+  "normal_power_link": "J18.1 = board 3V3; J18.2 = ESP_3V3; fit shunt for normal operation. Remove before external 3.3V injection.",
+  "physical_ESP_only_power_test": "Pending first article"
+}

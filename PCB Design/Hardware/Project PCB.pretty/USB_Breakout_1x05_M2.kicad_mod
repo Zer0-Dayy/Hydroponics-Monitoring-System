@@ -1,0 +1,90 @@
+(footprint "USB_Breakout_1x05_M2"
+	(version 20241229)
+	(generator "kicad-footprint-generator")
+	(layer "F.Cu")
+	(descr "Replaceable 2.54 mm Micro-B breakout; optional M2 insulated stand-offs in adjustable slots. Check against 1:1 drawing.")
+	(property "Reference" "REF**"
+		(at 0 -2.77 0)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15))))
+	(property "Value" "PinSocket_1x05_P2.54mm_Vertical"
+		(at 0 12.93 0)
+		(layer "F.Fab")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15))))
+	(attr through_hole)
+	(pad "1" thru_hole rect
+		(at 0.0 0)
+		(size 1.7 1.7)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no))
+	(pad "2" thru_hole circle
+		(at 2.54 0)
+		(size 1.7 1.7)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no))
+	(pad "3" thru_hole circle
+		(at 5.08 0)
+		(size 1.7 1.7)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no))
+	(pad "4" thru_hole circle
+		(at 7.62 0)
+		(size 1.7 1.7)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no))
+	(pad "5" thru_hole circle
+		(at 10.16 0)
+		(size 1.7 1.7)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no))
+	(embedded_fonts no)
+	(pad "" np_thru_hole oval
+		(at 0 4.15)
+		(size 2.4 3.6)
+		(drill oval 2.4 3.6)
+		(layers "*.Cu" "*.Mask")
+		(uuid "e241ce7d-91c9-4d6e-acd8-ab4ab9b602f3"))
+	(pad "" np_thru_hole oval
+		(at 10.16 4.15)
+		(size 2.4 3.6)
+		(drill oval 2.4 3.6)
+		(layers "*.Cu" "*.Mask")
+		(uuid "2c7dc343-0992-4fbb-8217-6411d4009cee"))
+	(fp_rect
+		(start -1.34 -1.34)
+		(end 11.5 1.34)
+		(stroke
+			(width 0.12)
+			(type default))
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "9eba8c7f-a002-4f5f-8c15-8bfe2f8c11a7"))
+	(fp_rect
+		(start -1.55 -1.55)
+		(end 11.71 1.55)
+		(stroke
+			(width 0.05)
+			(type default))
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "bc92b61d-902c-4fb5-be67-d1b72404f3c9"))
+	(fp_rect
+		(start -2.3 -1.9)
+		(end 12.45 12.1)
+		(stroke
+			(width 0.12)
+			(type default))
+		(fill none)
+		(layer "F.Fab")
+		(uuid "7e7052be-4f3f-4a24-b26a-49677a6eb383")))

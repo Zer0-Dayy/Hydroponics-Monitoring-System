@@ -25,3 +25,7 @@ However, if you wish to redistribute the KiCad libraries, or parts thereof (incl
 The KiCad libraries are provided in the hope that they will be useful, but are provided without warranty of any kind, express or implied.
 
 The KiCad libraries are compiled by the KiCad community - if you find an error in the library data, please help the community and contribute a fix!
+
+## Revision 1.6 additions
+
+The Micro-B, resistor, LED and header footprints and the LED symbol use KiCad community library data. The ProjectPCB Micro-B copy has enlarged plated anchor lands, cropped edge silkscreen and standard SMT paste openings. The breakout carrier footprint adapts the five-position socket contact pattern and adds two non-plated mounting slots.
